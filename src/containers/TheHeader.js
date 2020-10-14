@@ -55,6 +55,7 @@ const TheHeader = () => {
         onClick={toggleSidebar}
       />
       <CHeaderBrand className="mx-auto d-lg-none" to="/">
+        {/* config icon brand here */}
         <CIcon name="logo" height="48" alt="Logo" />
       </CHeaderBrand>
 

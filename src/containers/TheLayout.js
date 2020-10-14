@@ -1,7 +1,7 @@
 import React from 'react'
 import { TheContent, TheSidebar, TheFooter, TheHeader } from './index'
 
-const TheLayout = () => {
+const TheLayout = props => {
   return (
     <div className="c-app c-default-layout">
       <TheSidebar />

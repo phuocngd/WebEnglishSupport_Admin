@@ -16,6 +16,7 @@ import CIcon from '@coreui/icons-react'
 
 // sidebar nav config
 import navigation from './_nav'
+import { showHideSidebar } from '../views/slice/sidebarSlice'
 
 const TheSidebar = () => {
   const dispatch = useDispatch()
@@ -23,7 +24,7 @@ const TheSidebar = () => {
   return (
     <CSidebar
       show={show.isShow}
-      onShowChange={val => dispatch({ type: 'set', sidebarShow: val })}
+      onShowChange={val => dispatch(showHideSidebar(val))}
     >
       <CSidebarBrand className="d-md-down-none" to="/">
         {/* icon bran set here */}

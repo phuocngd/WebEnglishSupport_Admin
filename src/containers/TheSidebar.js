@@ -16,7 +16,7 @@ import CIcon from '@coreui/icons-react'
 
 // sidebar nav config
 import navigation from './_nav'
-import { showHideSidebar } from '../views/slice/sidebarSlice'
+import { showHideSidebar } from '../Store/slice/sidebarSlice'
 
 const TheSidebar = () => {
   const dispatch = useDispatch()

@@ -22,8 +22,13 @@ import { login } from '../../../Store/slice/authenticationSlice'
 import CryptoJS from 'crypto-js'
 import { axiosGet } from '../../../axios/axios'
 
-const queryAccount = async account => {
-  await axiosGet(account)
+const queryAccount = async (user, pass) => {
+  const filterModel = {
+    user: user,
+    pass: pass,
+    url: 'http://localhost:3000/'
+  }
+  await axiosGet(filterModel)
 }
 
 const Login = () => {
@@ -52,7 +57,7 @@ const Login = () => {
     ).toString()
     localStorage.setItem(Userkey, username)
     localStorage.setItem(Passkey, pass)
-    await queryAccount()
+    await queryAccount(usernameValue, passsValue)
   }
   if (isloggedIn) return <Redirect to="/" />
   return (
@@ -72,7 +77,7 @@ const Login = () => {
                           <CIcon name="cil-user" />
                         </CInputGroupText>
                       </CInputGroupPrepend>
-                      <CInput
+                      <input
                         type="text"
                         ref={usernameRef}
                         placeholder="Username"
@@ -85,7 +90,7 @@ const Login = () => {
                           <CIcon name="cil-lock-locked" />
                         </CInputGroupText>
                       </CInputGroupPrepend>
-                      <CInput
+                      <input
                         type="password"
                         ref={passRef}
                         placeholder="Password"

@@ -1,4 +1,6 @@
-import React from 'react'
+import React, { useRef } from 'react'
+import { validate } from 'email-validator'
+
 import {
   CButton,
   CCard,
@@ -14,8 +16,43 @@ import {
   CRow
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
+import { useDispatch } from 'react-redux'
+import useEncrypt from '../../../components/hook/useEncrypt'
+import { signupRequest } from '../../../Store/slice/authenticationSlice'
+import { axiosPost } from '../../../axios/axios'
 
 const Register = () => {
+  const [mahoa] = useEncrypt()
+  const dispatch = useDispatch()
+  let usernameRef = useRef()
+  let emailRef = useRef()
+  let passRef = useRef()
+
+  const handelCreateAccount = async () => {
+    if (
+      !usernameRef.current.value ||
+      !emailRef.current.value ||
+      !passRef.current.value
+    )
+      return null
+    if (!validate(emailRef.current.value)) {
+      alert('email invalid')
+      return null
+    }
+    const filterModel = {
+      fullname: mahoa(usernameRef.current.value),
+      email: mahoa(emailRef.current.value),
+      password: mahoa(passRef.current.value),
+      url: 'http://localhost:9999/signup'
+    }
+    const res = await axiosPost(filterModel)
+    if (res) {
+      alert('tao thanh cong')
+    } else {
+      alert('tao khong thanh cong')
+    }
+    // dispatch(signupRequest(filterModel))
+  }
   return (
     <div className="c-app c-default-layout flex-row align-items-center">
       <CContainer>
@@ -32,13 +69,26 @@ const Register = () => {
                         <CIcon name="cil-user" />
                       </CInputGroupText>
                     </CInputGroupPrepend>
-                    <CInput type="text" placeholder="Username" autoComplete="username" />
+                    <input
+                      ref={usernameRef}
+                      type="text"
+                      placeholder="Username"
+                      autoComplete="username"
+                      required
+                    />
                   </CInputGroup>
                   <CInputGroup className="mb-3">
                     <CInputGroupPrepend>
                       <CInputGroupText>@</CInputGroupText>
                     </CInputGroupPrepend>
-                    <CInput type="text" placeholder="Email" autoComplete="email" />
+                    <input
+                      ref={emailRef}
+                      type="email"
+                      className="email_input"
+                      placeholder="Email"
+                      autoComplete="email"
+                      required
+                    />
                   </CInputGroup>
                   <CInputGroup className="mb-3">
                     <CInputGroupPrepend>
@@ -46,26 +96,30 @@ const Register = () => {
                         <CIcon name="cil-lock-locked" />
                       </CInputGroupText>
                     </CInputGroupPrepend>
-                    <CInput type="password" placeholder="Password" autoComplete="new-password" />
+                    <input
+                      ref={passRef}
+                      type="password"
+                      placeholder="Password"
+                      autoComplete="new-password"
+                      required
+                    />
                   </CInputGroup>
-                  <CInputGroup className="mb-4">
-                    <CInputGroupPrepend>
-                      <CInputGroupText>
-                        <CIcon name="cil-lock-locked" />
-                      </CInputGroupText>
-                    </CInputGroupPrepend>
-                    <CInput type="password" placeholder="Repeat password" autoComplete="new-password" />
-                  </CInputGroup>
-                  <CButton color="success" block>Create Account</CButton>
+                  <CButton color="success" block onClick={handelCreateAccount}>
+                    Create Account
+                  </CButton>
                 </CForm>
               </CCardBody>
               <CCardFooter className="p-4">
                 <CRow>
                   <CCol xs="12" sm="6">
-                    <CButton className="btn-facebook mb-1" block><span>facebook</span></CButton>
+                    <CButton className="btn-facebook mb-1" block>
+                      <span>facebook</span>
+                    </CButton>
                   </CCol>
                   <CCol xs="12" sm="6">
-                    <CButton className="btn-twitter mb-1" block><span>twitter</span></CButton>
+                    <CButton className="btn-twitter mb-1" block>
+                      <span>twitter</span>
+                    </CButton>
                   </CCol>
                 </CRow>
               </CCardFooter>

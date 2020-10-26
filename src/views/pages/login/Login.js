@@ -1,7 +1,6 @@
 import React, { useRef } from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { useStorageState } from 'react-storage-hooks'
 
 import {
   CButton,
@@ -11,53 +10,33 @@ import {
   CCol,
   CContainer,
   CForm,
-  CInput,
   CInputGroup,
   CInputGroupPrepend,
   CInputGroupText,
   CRow
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
-import { login } from '../../../Store/slice/authenticationSlice'
-import CryptoJS from 'crypto-js'
-import { axiosGet } from '../../../axios/axios'
-
-const queryAccount = async (user, pass) => {
-  const filterModel = {
-    user: user,
-    pass: pass,
-    url: 'http://localhost:3000/'
-  }
-  await axiosGet(filterModel)
-}
+import { signinRequest } from '../../../Store/slice/authenticationSlice'
+import useEncrypt from '../../../components/hook/useEncrypt'
 
 const Login = () => {
   const dispatch = useDispatch()
   const isloggedIn = useSelector(state => state.authentication).isLogin
   const usernameRef = useRef(null)
   const passRef = useRef(null)
-  const handelLogin = async e => {
+  const [mahoa] = useEncrypt()
+
+  const handelLogin = e => {
     e.preventDefault()
-    dispatch(login(true))
-    const Userkey = CryptoJS.MD5('loginUserState')
-    const Passkey = CryptoJS.MD5('loginPassState')
+    const usernameEncrypted = mahoa(usernameRef.current.value)
+    const passEncrypted = mahoa(passRef.current.value)
 
-    const usernameValue = usernameRef.current.value
-    const passsValue = passRef.current.value
-
-    console.log(usernameValue)
-    console.log(passsValue)
-    const username = CryptoJS.AES.encrypt(
-      'cloneuser15',
-      'SecretPassphrase'
-    ).toString()
-    const pass = CryptoJS.AES.encrypt(
-      'abcd112233',
-      'SecretPassphrase'
-    ).toString()
-    localStorage.setItem(Userkey, username)
-    localStorage.setItem(Passkey, pass)
-    await queryAccount(usernameValue, passsValue)
+    const filterModel = {
+      email: usernameEncrypted,
+      password: passEncrypted,
+      url: 'http://localhost:9999/signin'
+    }
+    dispatch(signinRequest(filterModel))
   }
   if (isloggedIn) return <Redirect to="/" />
   return (

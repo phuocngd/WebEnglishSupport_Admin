@@ -1,16 +1,21 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { axiosGet } from '../../axios/axios';
+import { axiosGet, axiosPost } from '../../axios/axios';
 import CryptoJS from "crypto-js";
-const fetchServer = createAsyncThunk(
-  'users/fetchByIdStatus',
-  async (userId, thunkAPI) => {
-    const response = await axiosGet(userId);
+const signinRequest = createAsyncThunk(
+  'account/signin',
+  async (model) => {
+    const response = await axiosPost(model);
     return response.data;
   }
 );
-const decrypt = localstoreKey => {
-  const keyMD5 = CryptoJS.MD5(localstoreKey)
-  const value = localStorage.getItem(keyMD5) || '';
+const signupRequest = createAsyncThunk(
+  'account/signup',
+  async (model) => {
+    const response = await axiosPost(model);
+    return response.data;
+  }
+);
+const decrypt = value => {
   const bytes = CryptoJS.AES.decrypt(value, 'SecretPassphrase') // SecretPassphrase can handle by server
   return bytes.toString(CryptoJS.enc.Utf8)
 }
@@ -24,27 +29,63 @@ const getStateLogin = () => {
 const authenticationSlice = createSlice({
   name: 'authentication',
   initialState: {
-    isLogin: getStateLogin()
+    accountAtLocalStore: getStateLogin(),
+    loginState: null,
   },
   reducers: {
     login: (state, action) => {
       state.isLogin = action.payload;
+    },
+    logout: (state) => {
+      state.loginState = {};
+    },
+    updateStateLogin: (state, action) => {
+      const data = action.payload
+      state.loginState = {
+        token: data[0],
+        email: data[1],
+        rule: data[2]
+      };
     }
   },
   extraReducers: {
-    [fetchServer.pending]: (state, action) => {
+    [signinRequest.pending]: (state, action) => {
       console.log('pending');
     },
-    [fetchServer.fulfilled]: (state, action) => {
+    [signinRequest.fulfilled]: (state, action) => {
+      const data = action.payload
+
+      state.loginState = {
+        token: data[0],
+        email: data[1],
+        rule: data[2]
+      };
       console.log('fulfilled');
     },
-    [fetchServer.rejected]: (state, action) => {
+    [signinRequest.rejected]: (state, action) => {
+      console.log('rejected');
+    },
+
+    [signupRequest.pending]: (state, action) => {
+      console.log('pending');
+    },
+    [signupRequest.fulfilled]: (state, action) => {
+      const data = action.payload
+
+      state.loginState = {
+        token: data[0],
+        email: data[1],
+        rule: data[2]
+      };
+      console.log('fulfilled');
+    },
+    [signupRequest.rejected]: (state, action) => {
       console.log('rejected');
     }
   }
 });
 const { reducer, actions } = authenticationSlice;
-const { login } = actions;
-export { login, fetchServer }
+const { login, logout, updateStateLogin } = actions;
+export { login, logout, updateStateLogin, signinRequest, signupRequest }
 // Export the reducer, either as a default or named export
 export default reducer;

@@ -72,8 +72,7 @@ const Register = () => {
                     <input
                       ref={usernameRef}
                       type="text"
-                      placeholder="Username"
-                      autoComplete="username"
+                      placeholder="Fullname"
                       required
                     />
                   </CInputGroup>

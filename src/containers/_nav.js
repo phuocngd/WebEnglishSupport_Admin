@@ -12,6 +12,66 @@ export default [
   },
   {
     _tag: 'CSidebarNavTitle',
+    _children: ['Quản lý']
+  },
+  {
+    _tag: 'CSidebarNavItem',
+    name: 'Logo',
+    to: '/Quản lý/Logo',
+    icon: 'cil-speedometer',
+    badge: {
+      color: 'info',
+    }
+  },
+  {
+    _tag: 'CSidebarNavItem',
+    name: 'Tài khoản admin',
+    to: '/Quản lý/Tài khoản admin',
+    icon: 'cil-people',
+    badge: {
+      color: 'info',
+    }
+  },
+  {
+    _tag: 'CSidebarNavItem',
+    name: 'Tài khoản người dùng',
+    to: '/Quản lý/Tài khoản người dùng',
+    icon: 'cil-people',
+    badge: {
+      color: 'info',
+    }
+  },
+  {
+    _tag: 'CSidebarNavItem',
+    name: 'Đề thi',
+    to: '/Quản lý/Đề thi',
+    icon: 'cil-chart-line',
+    badge: {
+      color: 'info',
+    }
+  },
+  {
+    _tag: 'CSidebarNavItem',
+    name: 'Thêm Đề thi',
+    to: '/Quản lý/Đề thi/Thêm đề thi',
+    icon: 'cil-chart-line',
+    badge: {
+      color: 'info',
+    }
+  },
+  {
+    _tag: 'CSidebarNavItem',
+    name: 'Thống kê',
+    to: '/Quản lý/Thống kê',
+    icon: 'cil-speedometer',
+    badge: {
+      color: 'info',
+    }
+  },
+  
+
+  {
+    _tag: 'CSidebarNavTitle',
     _children: ['Theme']
   },
   {

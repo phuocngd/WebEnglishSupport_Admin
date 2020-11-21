@@ -10,7 +10,6 @@ import {
   CLink
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
-import {Link} from 'react-router-dom';
 
 
 const Exams = () => {
@@ -22,7 +21,8 @@ const Exams = () => {
             <CCardHeader>
               QUẢN LÝ ĐỀ THI
             <div className="card-header-actions">
-                <CButton block variant="outline" color="primary" size="sm"><Link to="/Quản lý/Đề thi/Thêm đề thi"><span> <CIcon height={25} name="cil-plus" /></span>Thêm đề thi</Link></CButton>
+                {/* <CButton block variant="outline" color="primary" size="sm"><CLink to="/Quản lý/Đề thi/Thêm đề thi"><span> <CIcon height={25} name="cil-plus" /></span>Thêm đề thi</CLink></CButton> */}
+                <CLink to="/Quản lý/Đề thi/Thêm đề thi"><CButton block variant="outline" color="primary" size="sm">Thêm đề thi</CButton></CLink>
               </div>
 
             </CCardHeader>

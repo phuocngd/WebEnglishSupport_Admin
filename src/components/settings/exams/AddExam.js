@@ -33,10 +33,10 @@ const addExam = () => {
                     <CForm action="" method="post" encType="multipart/form-data" className="form-horizontal">
                         <CFormGroup row>
                             <CCol md="3">
-                                <CLabel htmlFor="text-input">Tên đề</CLabel>
+                                <CLabel htmlFor="text-tieude">Tên đề</CLabel>
                             </CCol>
                             <CCol xs="12" md="9">
-                                <CInput id="text-input" name="text-input" placeholder="Text" />
+                                <CInput id="text-tieude" name="text-tieude" placeholder="Text" />
                             </CCol>
                         </CFormGroup>
                         <CFormGroup row>
@@ -55,22 +55,22 @@ const addExam = () => {
                             </CCol>
                         </CFormGroup>
                         <CFormGroup row>
-                            <CLabel col md="3" htmlFor="file-input">File đề thi</CLabel>
+                            <CLabel col md="3" htmlFor="file-dethi">File đề thi</CLabel>
                             <CCol xs="12" md="9">
-                                <CInputFile id="file-input" name="file-input" />
+                                <CInputFile id="file-dethi" name="file-dethi" />
                             </CCol>
                         </CFormGroup>
                         <CFormGroup row>
-                            <CLabel col md="3" htmlFor="file-input">File nghe(nếu có)</CLabel>
+                            <CLabel col md="3" htmlFor="file-nghe">File nghe(nếu có)</CLabel>
                             <CCol xs="12" md="9">
-                                <CInputFile id="file-input" name="file-input" />
+                                <CInputFile id="file-nghe" name="file-nghe" />
                             </CCol>
                         </CFormGroup>
                     </CForm>
                 </CCardBody>
                 <CCardFooter>
-                    <CButton type="submit" size="sm" color="primary"><CIcon name="cil-scrubber" /> Thêm mới</CButton>
-                    <CButton type="reset" size="sm" color="danger"><CIcon name="cil-ban" /> Hủy</CButton>
+                    <CButton type="submit" size="sm" className="mr-5" color="primary"><CIcon name="cil-scrubber" /> Thêm mới</CButton>
+                    <CButton type="reset" size="sm" color="danger"><CIcon name="cil-ban"/> Quay lại</CButton>
                 </CCardFooter>
             </CCard>
         </>

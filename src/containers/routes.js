@@ -14,6 +14,8 @@ const createUser = React.lazy(() =>
   import('../components/settings/users/CreateUser')
 );
 
+const profile = React.lazy(() => import('../components/settings/profile/Profile'));
+
 const Toaster = React.lazy(() =>
   import('../components/notifications/toaster/Toaster')
 )
@@ -88,6 +90,8 @@ const User = React.lazy(() => import('../components/users/User'))
 const routes = [
   { path: '/', exact: true, name: 'Home' },
   { path: '/dashboard', name: 'Dashboard', component: Dashboard },
+  { path: '/ThongTinCaNhan', name: 'Thông tin cá nhân', component: profile },
+
   { path: '/QuanLy', name: 'Quản lý', component: Exam, exact: true },
   { path: '/QuanLy/TaiKhoanAdmin', name: '', component: Users, exact: true },
   { path: '/QuanLy/TaiKhoanAdmin/ThemAdmin', name: 'Thêm admin', component: createUser },

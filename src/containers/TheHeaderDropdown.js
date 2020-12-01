@@ -6,7 +6,8 @@ import {
   CDropdownItem,
   CDropdownMenu,
   CDropdownToggle,
-  CImg
+  CImg,
+  CLink
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import { logout } from '../Store/slice/authenticationSlice'
@@ -31,8 +32,11 @@ const TheHeaderDropdown = () => {
       </CDropdownToggle>
       <CDropdownMenu className="pt-0" placement="bottom-end">
         <CDropdownItem>
-          <CIcon name="cil-user" className="mfe-2" />
+          <CLink to='/ThongTinCaNhan'>
+            <CIcon name="cil-user" className="mfe-2" />
           Profile
+          </CLink>
+
         </CDropdownItem>
         <CDropdownItem>
           <CIcon name="cil-settings" className="mfe-2" />

@@ -18,7 +18,7 @@ import {
 
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
-
+import { mdiPlusCircleOutline } from '@mdi/js';
 const CreateUser = () => {
     const [mahoa] = useEncrypt()
     const dispatch = useDispatch();
@@ -41,7 +41,7 @@ const CreateUser = () => {
         const filterModel = {
             fullname: mahoa(fullnameRef.current.value),
             email: mahoa(emailRef.current.value),
-            password:mahoa("123456"),
+            password: mahoa("123456"),
             url: 'http://localhost:9999/signup'
         }
         const res = await axiosPost(filterModel)
@@ -57,7 +57,7 @@ const CreateUser = () => {
         <div>
             <CCard>
                 <CCardHeader>
-                    THÊM TÀI KHOẢN ADMIN
+                    THÔNG TIN CÁ NHÂN
                 </CCardHeader>
                 <CCardBody>
                     <CForm className="form-horizontal">
@@ -85,14 +85,17 @@ const CreateUser = () => {
                                     required
                                 />
                             </CCol>
-                            <CButton type="submit" size="sm" className="mr-5" color="primary" onClick={handleCreateAccount}><CIcon name="cil-scrubber" /> Thêm mới</CButton>
-                            <CButton type="reset" size="sm" color="danger"><CIcon name="cil-ban" /> Quay lại</CButton>
                         </CFormGroup>
+                        <CFormGroup row>
+                            <CCol md="3">
+                                <CLabel htmlFor="text-password">Password</CLabel>
+                            </CCol>
+                            <CButton type="submit" size="sm" className="mr-5" color="primary" onClick><CIcon name="cil-scrubber" /> Thay đổi mật khẩu</CButton>
+                        </CFormGroup>
+                        <CButton type="submit" size="sm" className="mr-5" color="primary" onClick={handleCreateAccount}><CIcon name="cil-scrubber" /> Thêm mới</CButton>
+                        <CButton type="reset" size="sm" color="danger"><CIcon name="cil-ban" /> Quay lại</CButton>
                     </CForm>
                 </CCardBody>
-                <CCardFooter>
-                    {/* <CButton type="submit" size="sm" className="mr-5" color="primary"><CIcon name="cil-scrubber" /> Thêm mới</CButton> */}
-                </CCardFooter>
             </CCard>
         </div>
     )

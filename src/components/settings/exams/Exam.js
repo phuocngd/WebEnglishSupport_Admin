@@ -11,7 +11,6 @@ import {
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 
-
 const Exams = () => {
   return (
     <>
@@ -21,8 +20,7 @@ const Exams = () => {
             <CCardHeader>
               QUẢN LÝ ĐỀ THI
             <div className="card-header-actions">
-                {/* <CButton block variant="outline" color="primary" size="sm"><CLink to="/Quản lý/Đề thi/Thêm đề thi"><span> <CIcon height={25} name="cil-plus" /></span>Thêm đề thi</CLink></CButton> */}
-                <CLink to="/Quản lý/Đề thi/Thêm đề thi"><CButton block variant="outline" color="primary" size="sm">Thêm đề thi</CButton></CLink>
+                <CLink to="/QuanLy/DeThi/ThemDeThi"><CButton block variant="outline" color="primary" size="sm">Thêm đề thi</CButton></CLink>
               </div>
 
             </CCardHeader>
@@ -30,7 +28,7 @@ const Exams = () => {
               <table className="table table-hover table-outline mb-0 d-none d-sm-table">
                 <thead className="thead-light">
                   <tr>
-                    <th className="text-center ">Số thứ tự</th>
+                    <th className="text-center">Số thứ tự</th>
                     <th className="text-center">Tiêu đề</th>
                     <th className="text-center">Loại đề</th>
                     <th className="text-center">File đề</th>

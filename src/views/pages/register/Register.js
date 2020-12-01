@@ -36,7 +36,7 @@ const Register = () => {
     )
       return null
     if (!validate(emailRef.current.value)) {
-      alert('email invalid')
+      alert('Email không hợp lệ')
       return null
     }
     const filterModel = {
@@ -47,9 +47,9 @@ const Register = () => {
     }
     const res = await axiosPost(filterModel)
     if (res) {
-      alert('tao thanh cong')
+      alert('Tạo tài khoản thành công')
     } else {
-      alert('tao khong thanh cong')
+      alert('Tạo tài khoản không thành công')
     }
     // dispatch(signupRequest(filterModel))
   }

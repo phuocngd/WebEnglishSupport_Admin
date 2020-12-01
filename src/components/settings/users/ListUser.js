@@ -5,9 +5,10 @@ import {
   CCardHeader,
   CCol,
   CRow,
+  CButton,
+  CLink
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
-
 
 const Accounts = () => {
   return (
@@ -16,11 +17,14 @@ const Accounts = () => {
         <CCol>
           <CCard>
             <CCardHeader>
-              QUẢN LÝ TÀI KHOẢN NGƯỜI DÙNG
-            <div className="card-header-actions">
-                {/* <CButton block variant="outline" color="primary" size="sm"><CLink to="/Quản lý/Đề thi/Thêm đề thi"><span> <CIcon height={25} name="cil-plus" /></span>Thêm đề thi</CLink></CButton> */}
+              QUẢN LÝ TÀI KHOẢN ADMIN
+              <div className="card-header-actions">
+                <CLink to="/Quản lý/Tài khoản admin/Thêm admin">
+                  <CButton block variant="outline" color="primary" size="sm">
+                    Thêm đề thi
+                  </CButton>
+                </CLink>
               </div>
-
             </CCardHeader>
             <CCardBody>
               <table className="table table-hover table-outline mb-0 d-none d-sm-table">
@@ -44,9 +48,7 @@ const Accounts = () => {
                       <div>truc@gmail.com</div>
                     </td>
                     <td>
-                      <div className="clearfix">
-                        2020-10-31
-                      </div>
+                      <div className="clearfix">2020-10-31</div>
                     </td>
                   </tr>
                   <tr>
@@ -60,9 +62,7 @@ const Accounts = () => {
                       <div>truc@gmail.com</div>
                     </td>
                     <td>
-                      <div className="clearfix">
-                        2020-10-31
-                      </div>
+                      <div className="clearfix">2020-10-31</div>
                     </td>
                   </tr>
                   <tr>
@@ -76,9 +76,7 @@ const Accounts = () => {
                       <div>truc@gmail.com</div>
                     </td>
                     <td>
-                      <div className="clearfix">
-                        2020-10-31
-                      </div>
+                      <div className="clearfix">2020-10-31</div>
                     </td>
                   </tr>
                   <tr>
@@ -92,9 +90,7 @@ const Accounts = () => {
                       <div>truc@gmail.com</div>
                     </td>
                     <td>
-                      <div className="clearfix">
-                        2020-10-31
-                      </div>
+                      <div className="clearfix">2020-10-31</div>
                     </td>
                   </tr>
                   <tr>
@@ -108,9 +104,7 @@ const Accounts = () => {
                       <div>truc@gmail.com</div>
                     </td>
                     <td>
-                      <div className="clearfix">
-                        2020-10-31
-                      </div>
+                      <div className="clearfix">2020-10-31</div>
                     </td>
                   </tr>
                   <tr>
@@ -124,9 +118,7 @@ const Accounts = () => {
                       <div>truc@gmail.com</div>
                     </td>
                     <td>
-                      <div className="clearfix">
-                        2020-10-31
-                      </div>
+                      <div className="clearfix">2020-10-31</div>
                     </td>
                   </tr>
                 </tbody>

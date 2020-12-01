@@ -36,7 +36,7 @@ const addExam = () => {
                                 <CLabel htmlFor="text-tieude">Tên đề</CLabel>
                             </CCol>
                             <CCol xs="12" md="9">
-                                <CInput id="text-tieude" name="text-tieude" placeholder="Text" />
+                                <CInput id="text-tieude" name="text-tieude" placeholder="Text" required />
                             </CCol>
                         </CFormGroup>
                         <CFormGroup row>

@@ -1,12 +1,18 @@
 import React from 'react'
 
-const Account = React.lazy(()=>
-  import('../components/settings/account/Account'))
 
-const Exam = React.lazy(()=>
+const Exam = React.lazy(() =>
   import('../components/settings/exams/Exam')
 )
 const addExam = React.lazy(() => import('../components/settings/exams/AddExam'))
+
+const Users = React.lazy(() =>
+  import('../components/settings/users/ListUser')
+);
+
+const createUser = React.lazy(() =>
+  import('../components/settings/users/CreateUser')
+);
 
 const Toaster = React.lazy(() =>
   import('../components/notifications/toaster/Toaster')
@@ -77,17 +83,17 @@ const Typography = React.lazy(() =>
   import('../components/theme/typography/Typography')
 )
 const Widgets = React.lazy(() => import('../components/widgets/Widgets'))
-const Users = React.lazy(() => import('../components/users/Users'))
 const User = React.lazy(() => import('../components/users/User'))
 
 const routes = [
   { path: '/', exact: true, name: 'Home' },
   { path: '/dashboard', name: 'Dashboard', component: Dashboard },
-  { path: '/Quản lý', name: 'Quản lý', component: Exam, exact: true },
-  { path: '/Quản lý/Tài khoản admin', name: 'Tài khoản', component: Account },
-  { path: '/Quản lý/Tài khoản người dùng', name: 'Tài khoản', component: Account },
-  { path: '/Quản lý/Đề thi', name: 'Đề thi', component: Exam, exact:true },
-  { path: '/Quản lý/Đề thi/Thêm đề thi', name: 'Thêm đề thi', component: addExam },
+  { path: '/QuanLy', name: 'Quản lý', component: Exam, exact: true },
+  { path: '/QuanLy/TaiKhoanAdmin', name: '', component: Users, exact: true },
+  { path: '/QuanLy/TaiKhoanAdmin/ThemAdmin', name: 'Thêm admin', component: createUser },
+  { path: '/QuanLy/TaiKhoanNguoiDung', name: 'Tài khoản', component: Users },
+  { path: '/QuanLy/DeThi', name: 'Đề thi', component: Exam, exact: true },
+  { path: '/QuanLy/DeThi/ThemDeThi', name: 'Thêm đề thi', component: addExam },
   { path: '/theme', name: 'Theme', component: Colors, exact: true },
   { path: '/theme/colors', name: 'Colors', component: Colors },
   { path: '/theme/typography', name: 'Typography', component: Typography },

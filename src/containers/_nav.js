@@ -17,7 +17,7 @@ export default [
   {
     _tag: 'CSidebarNavItem',
     name: 'Logo',
-    to: '/Quản lý/Logo',
+    to: '/QuanLy/Logo',
     icon: 'cil-speedometer',
     badge: {
       color: 'info',
@@ -26,8 +26,17 @@ export default [
   {
     _tag: 'CSidebarNavItem',
     name: 'Tài khoản admin',
-    to: '/Quản lý/Tài khoản admin',
+    to: '/QuanLy/TaiKhoanAdmin',
     icon: 'cil-people',
+    badge: {
+      color: 'info',
+    }
+  },
+  {
+    _tag: 'CSidebarNavItem',
+    name: 'Thêm admin',
+    to: '/QuanLy/TaiKhoanAdmin/ThemAdmin',
+    icon: 'cil-chart-line',
     badge: {
       color: 'info',
     }
@@ -35,16 +44,17 @@ export default [
   {
     _tag: 'CSidebarNavItem',
     name: 'Tài khoản người dùng',
-    to: '/Quản lý/Tài khoản người dùng',
+    to: '/QuanLy/TaiKhoanNguoiDung',
     icon: 'cil-people',
     badge: {
       color: 'info',
     }
   },
+ 
   {
     _tag: 'CSidebarNavItem',
     name: 'Đề thi',
-    to: '/Quản lý/Đề thi',
+    to:  '/QuanLy/DeThi',
     icon: 'cil-chart-line',
     badge: {
       color: 'info',
@@ -53,7 +63,7 @@ export default [
   {
     _tag: 'CSidebarNavItem',
     name: 'Thêm Đề thi',
-    to: '/Quản lý/Đề thi/Thêm đề thi',
+    to: '/QuanLy/DeThi/ThemDeThi',
     icon: 'cil-chart-line',
     badge: {
       color: 'info',
@@ -62,7 +72,7 @@ export default [
   {
     _tag: 'CSidebarNavItem',
     name: 'Thống kê',
-    to: '/Quản lý/Thống kê',
+    to: '/QuanLy/ThongKe',
     icon: 'cil-speedometer',
     badge: {
       color: 'info',

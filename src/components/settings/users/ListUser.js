@@ -1,4 +1,4 @@
-import React, { lazy, useState } from 'react'
+import React, { lazy, useState } from 'react';
 import {
   CCard,
   CCardBody,
@@ -7,8 +7,8 @@ import {
   CRow,
   CButton,
   CLink
-} from '@coreui/react'
-import CIcon from '@coreui/icons-react'
+} from '@coreui/react';
+import CIcon from '@coreui/icons-react';
 
 const Users = () => {
   const [users, setUsers] = useState();
@@ -19,25 +19,25 @@ const Users = () => {
           <CCard>
             <CCardHeader>
               QUẢN LÝ TÀI KHOẢN ADMIN
-              <div className="card-header-actions">
-                <CLink to="/Quản lý/Tài khoản admin/Thêm admin">
-                  <CButton block variant="outline" color="primary" size="sm">
+              <div className='card-header-actions'>
+                <CLink to='/Quản lý/Tài khoản admin/Thêm admin'>
+                  <CButton block variant='outline' color='primary' size='sm'>
                     Thêm đề thi
                   </CButton>
                 </CLink>
               </div>
             </CCardHeader>
             <CCardBody>
-              <table className="table table-hover table-outline mb-0 d-none d-sm-table">
-                <thead className="thead-light">
+              <table className='table table-hover table-outline mb-0 d-none d-sm-table'>
+                <thead className='thead-light'>
                   <tr>
-                    <th className="text-center ">Số thứ tự</th>
-                    <th className="text-center">Họ tên</th>
-                    <th className="text-center">Email</th>
-                    <th className="text-center">Ngày tạo tài khoản</th>
+                    <th className='text-center '>Số thứ tự</th>
+                    <th className='text-center'>Họ tên</th>
+                    <th className='text-center'>Email</th>
+                    <th className='text-center'>Ngày tạo tài khoản</th>
                   </tr>
                 </thead>
-                <tbody className="text-center">
+                <tbody className='text-center'>
                   <tr>
                     <td>
                       <div>1</div>
@@ -45,11 +45,11 @@ const Users = () => {
                     <td>
                       <div>Trúc</div>
                     </td>
-                    <td className="text-center">
+                    <td className='text-center'>
                       <div>truc@gmail.com</div>
                     </td>
                     <td>
-                      <div className="clearfix">2020-10-31</div>
+                      <div className='clearfix'>2020-10-31</div>
                     </td>
                   </tr>
                   <tr>
@@ -59,11 +59,11 @@ const Users = () => {
                     <td>
                       <div>Trúc</div>
                     </td>
-                    <td className="text-center">
+                    <td className='text-center'>
                       <div>truc@gmail.com</div>
                     </td>
                     <td>
-                      <div className="clearfix">2020-10-31</div>
+                      <div className='clearfix'>2020-10-31</div>
                     </td>
                   </tr>
                   <tr>
@@ -73,11 +73,11 @@ const Users = () => {
                     <td>
                       <div>Trúc</div>
                     </td>
-                    <td className="text-center">
+                    <td className='text-center'>
                       <div>truc@gmail.com</div>
                     </td>
                     <td>
-                      <div className="clearfix">2020-10-31</div>
+                      <div className='clearfix'>2020-10-31</div>
                     </td>
                   </tr>
                   <tr>
@@ -87,11 +87,11 @@ const Users = () => {
                     <td>
                       <div>Trúc</div>
                     </td>
-                    <td className="text-center">
+                    <td className='text-center'>
                       <div>truc@gmail.com</div>
                     </td>
                     <td>
-                      <div className="clearfix">2020-10-31</div>
+                      <div className='clearfix'>2020-10-31</div>
                     </td>
                   </tr>
                   <tr>
@@ -101,11 +101,11 @@ const Users = () => {
                     <td>
                       <div>Trúc</div>
                     </td>
-                    <td className="text-center">
+                    <td className='text-center'>
                       <div>truc@gmail.com</div>
                     </td>
                     <td>
-                      <div className="clearfix">2020-10-31</div>
+                      <div className='clearfix'>2020-10-31</div>
                     </td>
                   </tr>
                   <tr>
@@ -115,11 +115,11 @@ const Users = () => {
                     <td>
                       <div>Trúc</div>
                     </td>
-                    <td className="text-center">
+                    <td className='text-center'>
                       <div>truc@gmail.com</div>
                     </td>
                     <td>
-                      <div className="clearfix">2020-10-31</div>
+                      <div className='clearfix'>2020-10-31</div>
                     </td>
                   </tr>
                 </tbody>
@@ -129,7 +129,7 @@ const Users = () => {
         </CCol>
       </CRow>
     </>
-  )
-}
+  );
+};
 
-export default Users
+export default Users;

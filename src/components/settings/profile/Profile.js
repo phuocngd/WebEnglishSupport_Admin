@@ -1,73 +1,128 @@
-import React, { useRef } from "react";
-import { useDispatch } from 'react-redux'
-import { validate } from 'email-validator'
-import useEncrypt from '../../hook/useEncrypt'
-import { axiosPost } from '../../../axios/axios'
+import React, { useRef } from 'react';
+import { useDispatch } from 'react-redux';
+import { validate } from 'email-validator';
+import useEncrypt from '../../hook/useEncrypt';
+import { axiosPost } from '../../../axios/axios';
 
 import {
-    CButton,
-    CCard,
-    CCardBody,
-    CCardHeader,
-    CCol,
-    CForm,
-    CFormGroup,
-    CLabel,
-    CContainer,
-    CLink
+  CButton,
+  CCard,
+  CCardBody,
+  CCardHeader,
+  CCol,
+  CForm,
+  CFormGroup,
+  CLabel,
+  CContainer,
+  CLink
+} from '@coreui/react';
+import { getValueRef } from '../../../share/commonFunc';
 
-} from '@coreui/react'
-import CIcon from '@coreui/icons-react'
 const Profile = () => {
-    const dispatch=useDispatch();
-    
-    return (
-        <CContainer>
-            <CCard>
-                <CCardHeader>
-                    THÔNG TIN CÁ NHÂN
-                </CCardHeader>
-                <CCardBody>
-                    <CForm className="form-horizontal">
-                        <CFormGroup row>
-                            <CCol md="3">
-                                <CLabel htmlFor="text-fullname">Fullname</CLabel>
-                            </CCol>
-                            <CCol xs="12" md="6">
-                                <input type="text"
-                                    placeholder="Fullname"
-                                    autoComplete="fullname" required />
-                            </CCol>
-                        </CFormGroup>
-                        <CFormGroup row>
-                            <CCol md="3">
-                                <CLabel htmlFor="text-email">Email</CLabel>
-                            </CCol>
-                            <CCol xs="12" md="6">
-                                <input
-                                    type="email"
-                                    className="email_input"
-                                    placeholder="Email"
-                                    autoComplete="email"
-                                    required
-                                />
-                            </CCol>
-                        </CFormGroup>
-                        <CFormGroup row>
-                            <CCol md="3">
-                                <CLabel htmlFor="text-password">Password</CLabel>
-                            </CCol>
-                            <CButton type="submit" size="sm" className="mr-5" color="primary"><CIcon name="cil-scrubber" /> Thay đổi mật khẩu</CButton>
-                        </CFormGroup>
-                        <CLink to="/ThongTinCaNhan/CapNhat">
-                        <CButton type="submit" size="sm" className="mr-5" color="primary"><CIcon name="cil-scrubber" />Cập nhật</CButton>
-                        </CLink>
-                        <CButton type="reset" size="sm" color="danger"><CIcon name="cil-ban" /> Quay lại</CButton>
-                    </CForm>
-                </CCardBody>
-            </CCard>
-        </CContainer>
-    )
-}
+  const dispatch = useDispatch();
+  const [isViewMode, setIsViewMode] = React.useState(true);
+  const [mahoa] = useEncrypt();
+
+  const fullNameRef = useRef();
+  const emailRef = useRef();
+  const passwordRef = useRef();
+
+  const handleMode = () => {
+    setIsViewMode(false);
+  };
+  const handleCancel = () => {
+    setIsViewMode(true);
+  };
+  const handleSave = async () => {
+    const fullName = getValueRef(fullNameRef);
+    if (!fullName) {
+      alert('nhập đầy đủ họ tên và email');
+      return null;
+    }
+
+    const updateModel = {
+      fullName: mahoa(fullName),
+      password: mahoa('123456'),
+      url: 'http://localhost:9999/signup'
+    };
+
+    const res = await axiosPost(updateModel);
+    if (res) {
+      alert('update tài khoản thành công');
+    } else {
+      alert('update tài khoản không thành công');
+    }
+    setIsViewMode(true);
+  };
+  return (
+    <CContainer>
+      <CCard>
+        <CCardHeader>
+          THÔNG TIN CÁ NHÂN
+          {isViewMode && (
+            <CButton size='sm' color='danger' onClick={handleMode}>
+              Action
+            </CButton>
+          )}
+        </CCardHeader>
+
+        <CCardBody>
+          <CForm className='form-horizontal'>
+            <CFormGroup row>
+              <CCol md='3'>
+                <CLabel htmlFor='text-fullname'>Fullname</CLabel>
+              </CCol>
+              <CCol xs='12' md='6'>
+                <input
+                  ref={fullNameRef}
+                  type='text'
+                  placeholder='Fullname'
+                  autoComplete='fullname'
+                  disabled={isViewMode}
+                />
+              </CCol>
+            </CFormGroup>
+            <CFormGroup row>
+              <CCol md='3'>
+                <CLabel htmlFor='text-password'>Password</CLabel>
+              </CCol>
+              <CCol xs='12' md='6'>
+                <input
+                  ref={passwordRef}
+                  type='password'
+                  className='email_input'
+                  placeholder='*********'
+                  disabled={isViewMode}
+                />
+              </CCol>
+            </CFormGroup>
+
+            {!isViewMode && (
+              <>
+                <CButton
+                  type='submit'
+                  size='sm'
+                  className='mr-5'
+                  color='primary'
+                  onClick={handleSave}>
+                  Save
+                </CButton>
+
+                <CButton
+                  type='submit'
+                  size='sm'
+                  className='mr-5'
+                  color='primary'
+                  onClick={handleCancel}>
+                  Cancel
+                </CButton>
+              </>
+            )}
+          </CForm>
+        </CCardBody>
+      </CCard>
+    </CContainer>
+  );
+};
 
 export default Profile;

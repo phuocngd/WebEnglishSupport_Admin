@@ -1,10 +1,9 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { getColor, deepObjectsMerge } from '@coreui/utils/src'
-import { CChartLine } from '@coreui/react-chartjs'
+import React from 'react';
+import PropTypes from 'prop-types';
+import { getColor, deepObjectsMerge } from '@coreui/utils/src';
+import { CChartLine } from '@coreui/react-chartjs';
 
 const ChartLineSimple = props => {
-
   const {
     borderColor,
     backgroundColor,
@@ -13,18 +12,18 @@ const ChartLineSimple = props => {
     label,
     pointed,
     ...attributes
-  } = props
+  } = props;
 
-  const pointHoverColor = (()=>{
+  const pointHoverColor = (() => {
     if (pointHoverBackgroundColor) {
-      return pointHoverBackgroundColor
+      return pointHoverBackgroundColor;
     } else if (backgroundColor !== 'transparent') {
-      return backgroundColor
+      return backgroundColor;
     }
-    return borderColor
-  })()
+    return borderColor;
+  })();
 
-  const defaultDatasets = (()=>{
+  const defaultDatasets = (() => {
     return [
       {
         data: dataPoints,
@@ -34,10 +33,10 @@ const ChartLineSimple = props => {
         pointHoverBackgroundColor: getColor(pointHoverColor),
         label
       }
-    ]
-  })()
+    ];
+  })();
 
-  const pointedOptions = (()=>{
+  const pointedOptions = (() => {
     return {
       scales: {
         xAxes: [
@@ -74,18 +73,22 @@ const ChartLineSimple = props => {
           hoverRadius: 4
         }
       }
-    }
-  })()
+    };
+  })();
 
-  const straightOptions = (()=>{
+  const straightOptions = (() => {
     return {
       scales: {
-        xAxes: [{
-          display: false
-        }],
-        yAxes: [{
-          display: false
-        }]
+        xAxes: [
+          {
+            display: false
+          }
+        ],
+        yAxes: [
+          {
+            display: false
+          }
+        ]
       },
       elements: {
         line: {
@@ -97,39 +100,39 @@ const ChartLineSimple = props => {
           hoverRadius: 4
         }
       }
-    }
-  })()
+    };
+  })();
 
-  const defaultOptions = (()=>{
-    const options = pointed ? pointedOptions : straightOptions
-      return Object.assign({}, options, {
-        maintainAspectRatio: false,
-        legend: {
-          display: false
-        }
-      })
-  })()
+  const defaultOptions = (() => {
+    const options = pointed ? pointedOptions : straightOptions;
+    return Object.assign({}, options, {
+      maintainAspectRatio: false,
+      legend: {
+        display: false
+      }
+    });
+  })();
 
   const computedDatasets = (() => {
-    return deepObjectsMerge(defaultDatasets, attributes.datasets || {})
-  })()
+    return deepObjectsMerge(defaultDatasets, attributes.datasets || {});
+  })();
 
   const computedOptions = (() => {
-    return deepObjectsMerge(defaultOptions, attributes.options || {})
-  })()
+    return deepObjectsMerge(defaultOptions, attributes.options || {});
+  })();
 
   // render
 
   return (
     <CChartLine
       {...attributes}
-      type="line"
+      type='line'
       datasets={computedDatasets}
       options={computedOptions}
       labels={label}
     />
-  )
-}
+  );
+};
 
 ChartLineSimple.propTypes = {
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
@@ -150,4 +153,4 @@ ChartLineSimple.defaultProps = {
   label: 'Sales'
 };
 
-export default ChartLineSimple
+export default ChartLineSimple;

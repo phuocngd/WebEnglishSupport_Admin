@@ -1,10 +1,9 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { getColor } from '@coreui/utils/src'
-import { CChartBar } from '@coreui/react-chartjs'
+import React from 'react';
+import PropTypes from 'prop-types';
+import { getColor } from '@coreui/utils/src';
+import { CChartBar } from '@coreui/react-chartjs';
 
 const ChartBarSimple = props => {
-
   const {
     backgroundColor,
     pointHoverBackgroundColor,
@@ -12,9 +11,9 @@ const ChartBarSimple = props => {
     label,
     pointed,
     ...attributes
-  } = props
+  } = props;
 
-  const defaultDatasets = (()=>{
+  const defaultDatasets = (() => {
     return [
       {
         data: dataPoints,
@@ -24,37 +23,41 @@ const ChartBarSimple = props => {
         barPercentage: 0.5,
         categoryPercentage: 1
       }
-    ]
-  })()
+    ];
+  })();
 
-  const defaultOptions = (()=>{
+  const defaultOptions = (() => {
     return {
       maintainAspectRatio: false,
       legend: {
         display: false
       },
       scales: {
-        xAxes: [{
-          display: false
-        }],
-        yAxes: [{
-          display: false
-        }]
+        xAxes: [
+          {
+            display: false
+          }
+        ],
+        yAxes: [
+          {
+            display: false
+          }
+        ]
       }
-    }
-  })()
+    };
+  })();
 
   // render
   return (
     <CChartBar
       {...attributes}
-      type="bar"
+      type='bar'
       datasets={defaultDatasets}
       options={defaultOptions}
       labels={label}
     />
-  )
-}
+  );
+};
 
 ChartBarSimple.propTypes = {
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
@@ -73,4 +76,4 @@ ChartBarSimple.defaultProps = {
   label: 'Sales'
 };
 
-export default ChartBarSimple
+export default ChartBarSimple;

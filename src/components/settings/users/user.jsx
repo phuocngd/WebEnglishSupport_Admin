@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React, { useState } from 'react';
 import {
   CCard,
   CCardBody,
@@ -7,22 +7,22 @@ import {
   CRow,
   CButton,
   CLink
-} from '@coreui/react'
+} from '@coreui/react';
 
 const User = () => {
-const [users, setUsers]=useState({
+  const [users, setUsers] = useState({
     fullname,
     email,
     createdDate
-});
+  });
 
-    return (
-      <tr>
-        <td>{users.fullname}</td>
-        <td>{users.email}</td>
-        <td>{users.createdDate}</td>
-        <td></td>
-      </tr>
-    )
-}
-export default User
+  return (
+    <tr>
+      <td>{users.fullname}</td>
+      <td>{users.email}</td>
+      <td>{users.createdDate}</td>
+      <td></td>
+    </tr>
+  );
+};
+export default User;

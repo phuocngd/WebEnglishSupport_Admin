@@ -64,6 +64,7 @@
     "react-scripts": "^3.4.1"
   },
   "scripts": {
+    "fixPrettier": "prettier --write src/**/*.js src/**/*.jsx",
     "start": "set PORT=1111 && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

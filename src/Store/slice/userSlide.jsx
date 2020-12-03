@@ -1,10 +1,10 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { axiosGet, axiosPost } from '../../axios/axios'
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { axiosGet, axiosPost } from '../../axios/axios';
 
 const listUsersRequest = createAsyncThunk('account/listUsers', async model => {
   const respone = await axiosGet(model);
   return respone.data;
-})
+});
 
 const getUsersSlide = createSlice({
   name: 'listUsers',
@@ -13,25 +13,25 @@ const getUsersSlide = createSlice({
   },
   reducers: {
     getListUsers: (state, action) => {
-      state.listUsers = action.payload
+      state.listUsers = action.payload;
     }
   },
   extraReducers: {
     [listUsersRequest.pending]: (state, action) => {
-      console.log('pending')
+      console.log('pending');
     },
     [listUsersRequest.fulfilled]: (state, action) => {
-      const data = action.payload
+      const data = action.payload;
 
       state.loginState = {
         token: data[0],
         listUsers: data[1],
         rule: data[2]
-      }
-      console.log('fulfilled')
+      };
+      console.log('fulfilled');
     },
     [listUsersRequest.rejected]: (state, action) => {
-      console.log('rejected')
+      console.log('rejected');
     }
   }
-})
+});

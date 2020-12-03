@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import {
   CRow,
   CCol,
@@ -12,19 +12,23 @@ import {
   CNav,
   CNavItem,
   CNavLink
-} from '@coreui/react'
+} from '@coreui/react';
 
 const Navs = () => {
   return (
     <>
       <CRow>
-        <CCol xs="6">
+        <CCol xs='6'>
           <CCard>
             <CCardHeader>
               Navs
-              <div className="card-header-actions">
-                <a href="https://coreui.github.io/components/navs/" rel="noreferrer noopener" target="_blank" className="card-header-action">
-                  <small className="text-muted">docs</small>
+              <div className='card-header-actions'>
+                <a
+                  href='https://coreui.github.io/components/navs/'
+                  rel='noreferrer noopener'
+                  target='_blank'
+                  className='card-header-action'>
+                  <small className='text-muted'>docs</small>
                 </a>
               </div>
             </CCardHeader>
@@ -51,7 +55,7 @@ const Navs = () => {
               </CNav>
               <hr />
               <small>Link Base</small>
-              <CNav className="justify-content-center">
+              <CNav className='justify-content-center'>
                 <CNavLink>Active</CNavLink>
                 <CNavLink>Link</CNavLink>
                 <CNavLink>Link</CNavLink>
@@ -59,7 +63,7 @@ const Navs = () => {
               </CNav>
               <hr />
               <small>Link Based</small>
-              <CNav className="justify-content-end">
+              <CNav className='justify-content-end'>
                 <CNavLink>Active</CNavLink>
                 <CNavLink>Link</CNavLink>
                 <CNavLink>Link</CNavLink>
@@ -68,7 +72,7 @@ const Navs = () => {
             </CCardBody>
           </CCard>
         </CCol>
-        <CCol xs="3">
+        <CCol xs='3'>
           <CCard>
             <CCardHeader>
               Navs
@@ -76,7 +80,7 @@ const Navs = () => {
             </CCardHeader>
             <CCardBody>
               <CNav vertical>
-                <CNavLink className="nav-item">Active</CNavLink>
+                <CNavLink className='nav-item'>Active</CNavLink>
                 <CNavLink>Link</CNavLink>
                 <CNavLink>Link</CNavLink>
                 <CNavLink disabled>Disabled</CNavLink>
@@ -84,7 +88,7 @@ const Navs = () => {
             </CCardBody>
           </CCard>
         </CCol>
-        <CCol xs="3">
+        <CCol xs='3'>
           <CCard>
             <CCardHeader>
               Navs
@@ -111,14 +115,14 @@ const Navs = () => {
       </CRow>
 
       <CRow>
-        <CCol xs="6">
+        <CCol xs='6'>
           <CCard>
             <CCardHeader>
               Navs
               <small> tabs</small>
             </CCardHeader>
             <CCardBody>
-              <CNav variant="tabs">
+              <CNav variant='tabs'>
                 <CNavLink active>Active</CNavLink>
                 <CNavLink>Link</CNavLink>
                 <CNavLink>Link</CNavLink>
@@ -127,14 +131,14 @@ const Navs = () => {
             </CCardBody>
           </CCard>
         </CCol>
-        <CCol xs="6">
+        <CCol xs='6'>
           <CCard>
             <CCardHeader>
               Navs
               <small> pills</small>
             </CCardHeader>
             <CCardBody>
-              <CNav variant="pills">
+              <CNav variant='pills'>
                 <CNavItem>
                   <CNavLink active>Link</CNavLink>
                 </CNavItem>
@@ -153,14 +157,14 @@ const Navs = () => {
         </CCol>
       </CRow>
       <CRow>
-        <CCol xs="12">
+        <CCol xs='12'>
           <CCard>
             <CCardHeader>
               Navs
               <small> fill and justify</small>
             </CCardHeader>
             <CCardBody>
-              <CNav fill variant="pills">
+              <CNav fill variant='pills'>
                 <CNavItem>
                   <CNavLink active>Active</CNavLink>
                 </CNavItem>
@@ -177,16 +181,20 @@ const Navs = () => {
 
               <hr />
 
-              <CNav fill variant="pills">
-                <CNavLink active className="nav-item">Active</CNavLink>
-                <CNavLink className="nav-item">Link</CNavLink>
-                <CNavLink className="nav-item">Link</CNavLink>
-                <CNavLink className="nav-item" disabled>Disabled</CNavLink>
+              <CNav fill variant='pills'>
+                <CNavLink active className='nav-item'>
+                  Active
+                </CNavLink>
+                <CNavLink className='nav-item'>Link</CNavLink>
+                <CNavLink className='nav-item'>Link</CNavLink>
+                <CNavLink className='nav-item' disabled>
+                  Disabled
+                </CNavLink>
               </CNav>
 
               <hr />
 
-              <CNav justified variant="pills">
+              <CNav justified variant='pills'>
                 <CNavItem>
                   <CNavLink active>Active</CNavLink>
                 </CNavItem>
@@ -203,31 +211,42 @@ const Navs = () => {
 
               <hr />
 
-              <CNav justified variant="pills">
-                <CNavLink className="nav-item" active>Active</CNavLink>
-                <CNavLink className="nav-item">Link</CNavLink>
-                <CNavLink className="nav-item">Link</CNavLink>
-                <CNavLink className="nav-item" disabled>Disabled</CNavLink>
+              <CNav justified variant='pills'>
+                <CNavLink className='nav-item' active>
+                  Active
+                </CNavLink>
+                <CNavLink className='nav-item'>Link</CNavLink>
+                <CNavLink className='nav-item'>Link</CNavLink>
+                <CNavLink className='nav-item' disabled>
+                  Disabled
+                </CNavLink>
               </CNav>
-
             </CCardBody>
           </CCard>
         </CCol>
       </CRow>
 
       <CRow>
-        <CCol xs="12">
+        <CCol xs='12'>
           <CCard>
             <CCardHeader>
               Navs
               <small> with flex</small>
             </CCardHeader>
             <CCardBody>
-              <CNav variant="pills" className="flex-sm-row">
-                  <CNavLink className="flex-sm-fill text-sm-center" active>Active</CNavLink>
-                  <CNavLink className="flex-sm-fill text-sm-center">Link</CNavLink>
-                  <CNavLink className="flex-sm-fill text-sm-center">Link</CNavLink>
-                  <CNavLink className="flex-sm-fill text-sm-center" disabled>Disabled</CNavLink>
+              <CNav variant='pills' className='flex-sm-row'>
+                <CNavLink className='flex-sm-fill text-sm-center' active>
+                  Active
+                </CNavLink>
+                <CNavLink className='flex-sm-fill text-sm-center'>
+                  Link
+                </CNavLink>
+                <CNavLink className='flex-sm-fill text-sm-center'>
+                  Link
+                </CNavLink>
+                <CNavLink className='flex-sm-fill text-sm-center' disabled>
+                  Disabled
+                </CNavLink>
               </CNav>
             </CCardBody>
           </CCard>
@@ -235,22 +254,19 @@ const Navs = () => {
       </CRow>
 
       <CRow>
-
-        <CCol xs="6">
+        <CCol xs='6'>
           <CCard>
             <CCardHeader>
               Navs
               <small> tabs with dropdowns</small>
             </CCardHeader>
             <CCardBody>
-              <CNav variant="tabs">
+              <CNav variant='tabs'>
                 <CNavItem>
                   <CNavLink active>Link</CNavLink>
                 </CNavItem>
                 <CDropdown inNav>
-                  <CDropdownToggle caret>
-                    Dropdown
-                  </CDropdownToggle>
+                  <CDropdownToggle caret>Dropdown</CDropdownToggle>
                   <CDropdownMenu>
                     <CDropdownItem>Action</CDropdownItem>
                     <CDropdownItem>Another action</CDropdownItem>
@@ -270,21 +286,19 @@ const Navs = () => {
           </CCard>
         </CCol>
 
-        <CCol xs="6">
+        <CCol xs='6'>
           <CCard>
             <CCardHeader>
               Navs
               <small> pills with dropdowns</small>
             </CCardHeader>
             <CCardBody>
-              <CNav variant="pills">
+              <CNav variant='pills'>
                 <CNavItem>
                   <CNavLink active>Link</CNavLink>
                 </CNavItem>
                 <CDropdown inNav>
-                  <CDropdownToggle caret>
-                    Dropdown
-                  </CDropdownToggle>
+                  <CDropdownToggle caret>Dropdown</CDropdownToggle>
                   <CDropdownMenu>
                     <CDropdownItem>Action</CDropdownItem>
                     <CDropdownItem>Another action</CDropdownItem>
@@ -305,7 +319,7 @@ const Navs = () => {
         </CCol>
       </CRow>
     </>
-  )
-}
+  );
+};
 
-export default Navs
+export default Navs;

@@ -30,7 +30,7 @@ export default [
     to: '/QuanLy/Logo',
     icon: 'cil-speedometer',
     badge: {
-      color: 'info',
+      color: 'info'
     }
   },
   {
@@ -39,7 +39,7 @@ export default [
     to: '/QuanLy/TaiKhoanAdmin',
     icon: 'cil-people',
     badge: {
-      color: 'info',
+      color: 'info'
     }
   },
   {
@@ -48,7 +48,7 @@ export default [
     to: '/QuanLy/TaiKhoanAdmin/ThemAdmin',
     icon: 'cil-chart-line',
     badge: {
-      color: 'info',
+      color: 'info'
     }
   },
   {
@@ -57,17 +57,17 @@ export default [
     to: '/QuanLy/TaiKhoanNguoiDung',
     icon: 'cil-people',
     badge: {
-      color: 'info',
+      color: 'info'
     }
   },
- 
+
   {
     _tag: 'CSidebarNavItem',
     name: 'Đề thi',
-    to:  '/QuanLy/DeThi',
+    to: '/QuanLy/DeThi',
     icon: 'cil-chart-line',
     badge: {
-      color: 'info',
+      color: 'info'
     }
   },
   {
@@ -76,7 +76,7 @@ export default [
     to: '/QuanLy/DeThi/ThemDeThi',
     icon: 'cil-chart-line',
     badge: {
-      color: 'info',
+      color: 'info'
     }
   },
   {
@@ -85,10 +85,9 @@ export default [
     to: '/QuanLy/ThongKe',
     icon: 'cil-speedometer',
     badge: {
-      color: 'info',
+      color: 'info'
     }
   },
-  
 
   {
     _tag: 'CSidebarNavTitle',
@@ -385,4 +384,4 @@ export default [
     _tag: 'CSidebarNavDivider',
     className: 'm-2'
   }
-]
+];

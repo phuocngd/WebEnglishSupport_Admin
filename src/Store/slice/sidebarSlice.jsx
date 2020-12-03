@@ -33,6 +33,6 @@ const sidebarSlice = createSlice({
 });
 const { reducer, actions } = sidebarSlice;
 const { showHideSidebar } = actions;
-export { showHideSidebar, fetchServer }
+export { showHideSidebar, fetchServer };
 // Export the reducer, either as a default or named export
 export default reducer;

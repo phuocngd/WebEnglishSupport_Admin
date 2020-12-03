@@ -1,102 +1,110 @@
-import React from 'react'
+import React from 'react';
 
-
-const Exam = React.lazy(() =>
-  import('../components/settings/exams/Exam')
-)
-const addExam = React.lazy(() => import('../components/settings/exams/AddExam'))
-
-const Users = React.lazy(() =>
-  import('../components/settings/users/ListUser')
+const Exam = React.lazy(() => import('../components/settings/exams/Exam'));
+const addExam = React.lazy(() =>
+  import('../components/settings/exams/AddExam')
 );
+
+const Users = React.lazy(() => import('../components/settings/users/ListUser'));
 
 const createUser = React.lazy(() =>
   import('../components/settings/users/CreateUser')
 );
 
-const editProfile = React.lazy(() => import('../components/settings/profile/EditProfile'));
-const profile = React.lazy(() => import('../components/settings/profile/Profile'));
+const profile = React.lazy(() =>
+  import('../components/settings/profile/Profile')
+);
 
 const Toaster = React.lazy(() =>
   import('../components/notifications/toaster/Toaster')
-)
-const Tables = React.lazy(() => import('../components/base/tables/Tables'))
+);
+const Tables = React.lazy(() => import('../components/base/tables/Tables'));
 
 const Breadcrumbs = React.lazy(() =>
   import('../components/base/breadcrumbs/Breadcrumbs')
-)
-const Cards = React.lazy(() => import('../components/base/cards/Cards'))
+);
+const Cards = React.lazy(() => import('../components/base/cards/Cards'));
 const Carousels = React.lazy(() =>
   import('../components/base/carousels/Carousels')
-)
+);
 const Collapses = React.lazy(() =>
   import('../components/base/collapses/Collapses')
-)
+);
 const BasicForms = React.lazy(() =>
   import('../components/base/forms/BasicForms')
-)
+);
 
 const Jumbotrons = React.lazy(() =>
   import('../components/base/jumbotrons/Jumbotrons')
-)
+);
 const ListGroups = React.lazy(() =>
   import('../components/base/list-groups/ListGroups')
-)
-const Navbars = React.lazy(() => import('../components/base/navbars/Navbars'))
-const Navs = React.lazy(() => import('../components/base/navs/Navs'))
+);
+const Navbars = React.lazy(() => import('../components/base/navbars/Navbars'));
+const Navs = React.lazy(() => import('../components/base/navs/Navs'));
 const Paginations = React.lazy(() =>
   import('../components/base/paginations/Pagnations')
-)
-const Popovers = React.lazy(() => import('../components/base/popovers/Popovers'))
+);
+const Popovers = React.lazy(() =>
+  import('../components/base/popovers/Popovers')
+);
 const ProgressBar = React.lazy(() =>
   import('../components/base/progress-bar/ProgressBar')
-)
-const Switches = React.lazy(() => import('../components/base/switches/Switches'))
+);
+const Switches = React.lazy(() =>
+  import('../components/base/switches/Switches')
+);
 
-const Tabs = React.lazy(() => import('../components/base/tabs/Tabs'))
-const Tooltips = React.lazy(() => import('../components/base/tooltips/Tooltips'))
+const Tabs = React.lazy(() => import('../components/base/tabs/Tabs'));
+const Tooltips = React.lazy(() =>
+  import('../components/base/tooltips/Tooltips')
+);
 const BrandButtons = React.lazy(() =>
   import('../components/buttons/brand-buttons/BrandButtons')
-)
+);
 const ButtonDropdowns = React.lazy(() =>
   import('../components/buttons/button-dropdowns/ButtonDropdowns')
-)
+);
 const ButtonGroups = React.lazy(() =>
   import('../components/buttons/button-groups/ButtonGroups')
-)
-const Buttons = React.lazy(() => import('../components/buttons/buttons/Buttons'))
-const Charts = React.lazy(() => import('../components/charts/Charts'))
-const Dashboard = React.lazy(() => import('../components/dashboard/Dashboard'))
+);
+const Buttons = React.lazy(() =>
+  import('../components/buttons/buttons/Buttons')
+);
+const Charts = React.lazy(() => import('../components/charts/Charts'));
+const Dashboard = React.lazy(() => import('../components/dashboard/Dashboard'));
 const CoreUIIcons = React.lazy(() =>
   import('../components/icons/coreui-icons/CoreUIIcons')
-)
-const Flags = React.lazy(() => import('../components/icons/flags/Flags'))
-const Brands = React.lazy(() => import('../components/icons/brands/Brands'))
+);
+const Flags = React.lazy(() => import('../components/icons/flags/Flags'));
+const Brands = React.lazy(() => import('../components/icons/brands/Brands'));
 const Alerts = React.lazy(() =>
   import('../components/notifications/alerts/Alerts')
-)
+);
 const Badges = React.lazy(() =>
   import('../components/notifications/badges/Badges')
-)
+);
 const Modals = React.lazy(() =>
   import('../components/notifications/modals/Modals')
-)
-const Colors = React.lazy(() => import('../components/theme/colors/Colors'))
+);
+const Colors = React.lazy(() => import('../components/theme/colors/Colors'));
 const Typography = React.lazy(() =>
   import('../components/theme/typography/Typography')
-)
-const Widgets = React.lazy(() => import('../components/widgets/Widgets'))
-const User = React.lazy(() => import('../components/users/User'))
+);
+const Widgets = React.lazy(() => import('../components/widgets/Widgets'));
+const User = React.lazy(() => import('../components/users/User'));
 
 const routes = [
   { path: '/', exact: true, name: 'Home' },
   { path: '/dashboard', name: 'Dashboard', component: Dashboard },
   { path: '/ThongTinCaNhan', name: 'Thông tin cá nhân', component: profile },
-  { path: '/ThongTinCaNhan/CapNhat', name: 'Chỉnh sửa', component: editProfile },
-
   { path: '/QuanLy', name: 'Quản lý', component: Exam, exact: true },
   { path: '/QuanLy/TaiKhoanAdmin', name: '', component: Users, exact: true },
-  { path: '/QuanLy/TaiKhoanAdmin/ThemAdmin', name: 'Thêm admin', component: createUser },
+  {
+    path: '/QuanLy/TaiKhoanAdmin/ThemAdmin',
+    name: 'Thêm admin',
+    component: createUser
+  },
   { path: '/QuanLy/TaiKhoanNguoiDung', name: 'Tài khoản', component: Users },
   { path: '/QuanLy/DeThi', name: 'Đề thi', component: Exam, exact: true },
   { path: '/QuanLy/DeThi/ThemDeThi', name: 'Thêm đề thi', component: addExam },
@@ -155,6 +163,6 @@ const routes = [
   { path: '/widgets', name: 'Widgets', component: Widgets },
   { path: '/users', exact: true, name: 'Users', component: Users },
   { path: '/users/:id', exact: true, name: 'User Details', component: User }
-]
-const routes2 = []
-export default routes
+];
+const routes2 = [];
+export default routes;

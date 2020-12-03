@@ -1,5 +1,5 @@
-import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import {
   CCreateElement,
   CSidebar,
@@ -10,32 +10,31 @@ import {
   CSidebarMinimizer,
   CSidebarNavDropdown,
   CSidebarNavItem
-} from '@coreui/react'
+} from '@coreui/react';
 
-import CIcon from '@coreui/icons-react'
+import CIcon from '@coreui/icons-react';
 
 // sidebar nav config
-import navigation from './_nav'
-import { showHideSidebar } from '../Store/slice/sidebarSlice'
+import navigation from './_nav';
+import { showHideSidebar } from '../Store/slice/sidebarSlice';
 
 const TheSidebar = () => {
-  const dispatch = useDispatch()
-  const show = useSelector(state => state.sidebarShow)
+  const dispatch = useDispatch();
+  const show = useSelector(state => state.sidebarShow);
   return (
     <CSidebar
       show={show.isShow}
-      onShowChange={val => dispatch(showHideSidebar(val))}
-    >
-      <CSidebarBrand className="d-md-down-none" to="/">
+      onShowChange={val => dispatch(showHideSidebar(val))}>
+      <CSidebarBrand className='d-md-down-none' to='/'>
         {/* icon bran set here */}
         <CIcon
-          className="c-sidebar-brand-full"
-          name="logo-negative"
+          className='c-sidebar-brand-full'
+          name='logo-negative'
           height={35}
         />
         <CIcon
-          className="c-sidebar-brand-minimized"
-          name="sygnet"
+          className='c-sidebar-brand-minimized'
+          name='sygnet'
           height={35}
         />
       </CSidebarBrand>
@@ -50,9 +49,9 @@ const TheSidebar = () => {
           }}
         />
       </CSidebarNav>
-      <CSidebarMinimizer className="c-d-md-down-none" />
+      <CSidebarMinimizer className='c-d-md-down-none' />
     </CSidebar>
-  )
-}
+  );
+};
 
-export default React.memo(TheSidebar)
+export default React.memo(TheSidebar);

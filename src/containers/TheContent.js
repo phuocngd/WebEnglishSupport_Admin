@@ -1,19 +1,19 @@
-import React, { Suspense } from 'react'
-import { Redirect, Route, Switch } from 'react-router-dom'
-import { CContainer, CFade } from '@coreui/react'
+import React, { Suspense } from 'react';
+import { Redirect, Route, Switch } from 'react-router-dom';
+import { CContainer, CFade } from '@coreui/react';
 
 // routes config
-import routes from './routes'
+import routes from './routes';
 
 const loading = (
-  <div className="pt-3 text-center">
-    <div className="sk-spinner sk-spinner-pulse"></div>
+  <div className='pt-3 text-center'>
+    <div className='sk-spinner sk-spinner-pulse'></div>
   </div>
-)
+);
 /* this is freezing, dont touch this */
 const TheContent = () => {
   return (
-    <main className="c-main">
+    <main className='c-main'>
       <CContainer fluid>
         <Suspense fallback={loading}>
           <Switch>
@@ -32,14 +32,14 @@ const TheContent = () => {
                     )}
                   />
                 )
-              )
+              );
             })}
-            <Redirect from="/" to="/dashboard" />
+            <Redirect from='/' to='/dashboard' />
           </Switch>
         </Suspense>
       </CContainer>
     </main>
-  )
-}
+  );
+};
 
-export default React.memo(TheContent)
+export default React.memo(TheContent);

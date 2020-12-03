@@ -1,10 +1,5 @@
-import React from 'react'
-import {
-  CCard,
-  CCardBody,
-  CCardGroup,
-  CCardHeader
-} from '@coreui/react'
+import React from 'react';
+import { CCard, CCardBody, CCardGroup, CCardHeader } from '@coreui/react';
 import {
   CChartBar,
   CChartLine,
@@ -12,24 +7,23 @@ import {
   CChartRadar,
   CChartPie,
   CChartPolarArea
-} from '@coreui/react-chartjs'
+} from '@coreui/react-chartjs';
 
 const Charts = () => {
-
   return (
-    <CCardGroup columns className = "cols-2" >
+    <CCardGroup columns className='cols-2'>
       <CCard>
         <CCardHeader>
           Bar Chart
-          <div className="card-header-actions">
-            <a href="http://www.chartjs.org" className="card-header-action">
-              <small className="text-muted">docs</small>
+          <div className='card-header-actions'>
+            <a href='http://www.chartjs.org' className='card-header-action'>
+              <small className='text-muted'>docs</small>
             </a>
           </div>
         </CCardHeader>
         <CCardBody>
           <CChartBar
-            type="bar"
+            type='bar'
             datasets={[
               {
                 label: 'GitHub Commits',
@@ -37,7 +31,7 @@ const Charts = () => {
                 data: [40, 20, 12, 39, 10, 40, 39, 80, 40, 20, 12, 11]
               }
             ]}
-            labels="months"
+            labels='months'
             options={{
               tooltips: {
                 enabled: true
@@ -48,20 +42,13 @@ const Charts = () => {
       </CCard>
 
       <CCard>
-        <CCardHeader>
-          Doughnut Chart
-        </CCardHeader>
+        <CCardHeader>Doughnut Chart</CCardHeader>
         <CCardBody>
           <CChartDoughnut
-            type="doughnut"
+            type='doughnut'
             datasets={[
               {
-                backgroundColor: [
-                  '#41B883',
-                  '#E46651',
-                  '#00D8FF',
-                  '#DD1B16'
-                ],
+                backgroundColor: ['#41B883', '#E46651', '#00D8FF', '#DD1B16'],
                 data: [40, 20, 80, 10]
               }
             ]}
@@ -76,12 +63,10 @@ const Charts = () => {
       </CCard>
 
       <CCard>
-        <CCardHeader>
-          Line Chart
-        </CCardHeader>
+        <CCardHeader>Line Chart</CCardHeader>
         <CCardBody>
           <CChartLine
-            type="line"
+            type='line'
             datasets={[
               {
                 label: 'Data One',
@@ -99,26 +84,19 @@ const Charts = () => {
                 enabled: true
               }
             }}
-            labels="months"
+            labels='months'
           />
         </CCardBody>
       </CCard>
 
       <CCard>
-        <CCardHeader>
-          Pie Chart
-        </CCardHeader>
+        <CCardHeader>Pie Chart</CCardHeader>
         <CCardBody>
           <CChartPie
-            type="pie"
+            type='pie'
             datasets={[
               {
-                backgroundColor: [
-                  '#41B883',
-                  '#E46651',
-                  '#00D8FF',
-                  '#DD1B16'
-                ],
+                backgroundColor: ['#41B883', '#E46651', '#00D8FF', '#DD1B16'],
                 data: [40, 20, 80, 10]
               }
             ]}
@@ -133,12 +111,10 @@ const Charts = () => {
       </CCard>
 
       <CCard>
-        <CCardHeader>
-          Polar Area Chart
-        </CCardHeader>
+        <CCardHeader>Polar Area Chart</CCardHeader>
         <CCardBody>
           <CChartPolarArea
-            type="polarArea"
+            type='polarArea'
             datasets={[
               {
                 label: 'My First dataset',
@@ -166,20 +142,23 @@ const Charts = () => {
               }
             }}
             labels={[
-              'Eating', 'Drinking', 'Sleeping', 'Designing',
-              'Coding', 'Cycling', 'Running'
+              'Eating',
+              'Drinking',
+              'Sleeping',
+              'Designing',
+              'Coding',
+              'Cycling',
+              'Running'
             ]}
           />
         </CCardBody>
       </CCard>
 
       <CCard>
-        <CCardHeader>
-          Radar Chart
-        </CCardHeader>
+        <CCardHeader>Radar Chart</CCardHeader>
         <CCardBody>
           <CChartRadar
-            type="radar"
+            type='radar'
             datasets={[
               {
                 label: '2019',
@@ -211,14 +190,19 @@ const Charts = () => {
               }
             }}
             labels={[
-              'Eating', 'Drinking', 'Sleeping', 'Designing',
-              'Coding', 'Cycling', 'Running'
+              'Eating',
+              'Drinking',
+              'Sleeping',
+              'Designing',
+              'Coding',
+              'Cycling',
+              'Running'
             ]}
           />
         </CCardBody>
       </CCard>
     </CCardGroup>
-  )
-}
+  );
+};
 
-export default Charts
+export default Charts;

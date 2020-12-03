@@ -10,16 +10,16 @@ export default [
       text: 'NEW'
     }
   },
-  {
-    _tag: 'CSidebarNavItem',
-    name: 'ThongTinCaNhan',
-    to: '/ThongTinCaNhan',
-    icon: 'cil-speedometer',
-    badge: {
-      color: 'info',
-      text: 'NEW'
-    }
-  },
+  // {
+  //   _tag: 'CSidebarNavItem',
+  //   name: 'ThongTinCaNhan',
+  //   to: '/ThongTinCaNhan',
+  //   icon: 'cil-speedometer',
+  //   badge: {
+  //     color: 'info',
+  //     text: 'NEW'
+  //   }
+  // },
   {
     _tag: 'CSidebarNavTitle',
     _children: ['Quản lý']

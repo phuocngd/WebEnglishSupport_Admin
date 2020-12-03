@@ -1,4 +1,4 @@
-import React, { lazy } from 'react'
+import React, { lazy, useState } from 'react'
 import {
   CCard,
   CCardBody,
@@ -10,7 +10,8 @@ import {
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 
-const Accounts = () => {
+const Users = () => {
+  const [users, setUsers] = useState();
   return (
     <>
       <CRow>
@@ -131,4 +132,4 @@ const Accounts = () => {
   )
 }
 
-export default Accounts
+export default Users

@@ -1,12 +1,13 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-
+import { Link } from 'react-router-dom'
 import {
   CDropdown,
   CDropdownItem,
   CDropdownMenu,
   CDropdownToggle,
   CImg,
+
   CLink
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
@@ -32,11 +33,10 @@ const TheHeaderDropdown = () => {
       </CDropdownToggle>
       <CDropdownMenu className="pt-0" placement="bottom-end">
         <CDropdownItem>
-          <CLink to='/ThongTinCaNhan'>
-            <CIcon name="cil-user" className="mfe-2" />
-          Profile
+          <CLink to="/ThongTinCaNhan">
+              <CIcon name="cil-user" className="mfe-2" />
+              Profile
           </CLink>
-
         </CDropdownItem>
         <CDropdownItem>
           <CIcon name="cil-settings" className="mfe-2" />

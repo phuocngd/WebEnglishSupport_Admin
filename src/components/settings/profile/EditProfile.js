@@ -8,21 +8,53 @@ import {
     CButton,
     CCard,
     CCardBody,
+    CCardFooter,
     CCardHeader,
     CCol,
     CForm,
     CFormGroup,
+    CInput,
     CLabel,
-    CContainer,
-    CLink
 
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
-const Profile = () => {
-    const dispatch=useDispatch();
-    
+import { mdiPlusCircleOutline } from '@mdi/js';
+const CreateUser = () => {
+    const [mahoa] = useEncrypt()
+    const dispatch = useDispatch();
+    let fullnameRef = useRef();
+    let emailRef = useRef();
+    let password = useRef();
+
+    const handleCreateAccount = async () => {
+        if (
+            !fullnameRef.current.value ||
+            !emailRef.current.value
+        )
+            return null
+
+        if (!validate(emailRef.current.value)) {
+            alert('Email không hợp lệ')
+            return null
+        }
+
+        const filterModel = {
+            fullname: mahoa(fullnameRef.current.value),
+            email: mahoa(emailRef.current.value),
+            password: mahoa("123456"),
+            url: 'http://localhost:9999/signup'
+        }
+        const res = await axiosPost(filterModel)
+        if (res) {
+            alert('Tạo tài khoản thành công')
+        } else {
+            alert('Tạo tài khoản không thành công')
+        }
+        // dispatch(signupRequest(filterModel))
+    }
+
     return (
-        <CContainer>
+        <div>
             <CCard>
                 <CCardHeader>
                     THÔNG TIN CÁ NHÂN
@@ -33,8 +65,8 @@ const Profile = () => {
                             <CCol md="3">
                                 <CLabel htmlFor="text-fullname">Fullname</CLabel>
                             </CCol>
-                            <CCol xs="12" md="6">
-                                <input type="text"
+                            <CCol xs="12" md="9">
+                                <input ref={fullnameRef} type="text"
                                     placeholder="Fullname"
                                     autoComplete="fullname" required />
                             </CCol>
@@ -43,8 +75,9 @@ const Profile = () => {
                             <CCol md="3">
                                 <CLabel htmlFor="text-email">Email</CLabel>
                             </CCol>
-                            <CCol xs="12" md="6">
+                            <CCol xs="12" md="9">
                                 <input
+                                    ref={emailRef}
                                     type="email"
                                     className="email_input"
                                     placeholder="Email"
@@ -57,17 +90,15 @@ const Profile = () => {
                             <CCol md="3">
                                 <CLabel htmlFor="text-password">Password</CLabel>
                             </CCol>
-                            <CButton type="submit" size="sm" className="mr-5" color="primary"><CIcon name="cil-scrubber" /> Thay đổi mật khẩu</CButton>
+                            <CButton type="submit" size="sm" className="mr-5" color="primary" onClick><CIcon name="cil-scrubber" /> Thay đổi mật khẩu</CButton>
                         </CFormGroup>
-                        <CLink to="/ThongTinCaNhan/CapNhat">
-                        <CButton type="submit" size="sm" className="mr-5" color="primary"><CIcon name="cil-scrubber" />Cập nhật</CButton>
-                        </CLink>
+                        <CButton type="submit" size="sm" className="mr-5" color="primary" onClick={handleCreateAccount}><CIcon name="cil-scrubber" /> Thêm mới</CButton>
                         <CButton type="reset" size="sm" color="danger"><CIcon name="cil-ban" /> Quay lại</CButton>
                     </CForm>
                 </CCardBody>
             </CCard>
-        </CContainer>
+        </div>
     )
 }
 
-export default Profile;
+export default CreateUser;

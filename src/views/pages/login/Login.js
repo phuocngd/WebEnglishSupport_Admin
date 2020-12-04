@@ -64,7 +64,6 @@ const Login = () => {
                           ref={usernameRef}
                           placeholder='Username'
                           autoComplete='username'
-                          value='truc@gmail.com'
                         />
                       </CInputGroup>
                       <CInputGroup className='mb-4'>
@@ -78,7 +77,6 @@ const Login = () => {
                           ref={passRef}
                           placeholder='Password'
                           autoComplete='current-password'
-                          value='123456'
                         />
                       </CInputGroup>
                       <CRow>

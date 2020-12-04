@@ -1,26 +1,25 @@
-.profile-title {
-  font-size: 30px;
-  font-weight: 450;
+.profile {
+  .profile-title {
+    font-size: 30px;
+    font-weight: 450;
 
-  .btnEdit {
-    margin: auto;
-    padding: 0.5rem;
-    font-size: 18px;
-    float: right;
-    font-weight: 400;
-          color: #e55353;
-
-    &:hover {
-      color: white;
+    .profile-btn {
+      float: right;
+      font-size: 16px;
+      .btnEdit {
+        font-weight: 400;
+        &:hover {
+          color: white;
+        }
+      }
+      .profile-content-btn {
+        margin: 2px;
+      }
     }
   }
-}
-.profile-content {
-  label {
-    font-size: 16px;
-  }
-  .profile-content-btn {
-    font-size: 18px;
-    margin-right: 20px;
+  .profile-content {
+    label {
+      font-size: 16px;
+    }
   }
 }

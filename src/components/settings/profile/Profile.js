@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { validate } from 'email-validator';
 import useEncrypt from '../../hook/useEncrypt';
@@ -14,129 +14,146 @@ import {
   CFormGroup,
   CLabel,
   CContainer,
-  CLink
+  CLink,
+  CListGroup,
+  CListGroupItem,
+  CRow
 } from '@coreui/react';
 import { getValueRef } from '../../../share/commonFunc';
 import { mdiAccountEditOutline } from '@mdi/js';
 import Icon from '@mdi/react';
+import CIcon from '@coreui/icons-react';
+import { Link } from 'react-router-dom';
 
-const Profile = () => {
+const GeneralEdit = () => {
+  return <OneItemCanEdit label='Họ và tên' placeholder='anh yeu em' />;
+};
+const Password = () => {
+  return <OneItemCanEdit label='Mật khẩu' placeholder='*******'/>;
+};
+
+const OneItemCanEdit = props => {
+  const { label, placeholder, url } = props;
   const dispatch = useDispatch();
-  const [isViewMode, setIsViewMode] = React.useState(true);
+  const [isViewMode, setIsViewMode] = useState(true);
   const [mahoa] = useEncrypt();
 
-  const fullNameRef = useRef();
-  const emailRef = useRef();
-  const passwordRef = useRef();
+  const inputRef = useRef();
 
-  const handleMode = () => {
-    setIsViewMode(false);
-  };
-  const handleCancel = () => {
-    setIsViewMode(true);
-  };
   const handleSave = async () => {
-    const fullName = getValueRef(fullNameRef);
-    if (!fullName) {
-      alert('nhập đầy đủ họ tên và email');
-      return null;
-    }
-
-    const updateModel = {
-      fullName: mahoa(fullName),
-      password: mahoa('123456'),
-      url: 'http://localhost:9999/signup'
-    };
-
-    const res = await axiosPost(updateModel);
-    if (res) {
-      alert('update tài khoản thành công');
-    } else {
-      alert('update tài khoản không thành công');
-    }
+    // handle logic send update tung cai o đây
     setIsViewMode(true);
+  };
+
+  const renderBtn = isShow => {
+    if (isShow)
+      return (
+        <>
+          <CButton
+            type='submit'
+            size='l'
+            className='profile-content-btn'
+            color='primary'
+            variant='outline'
+            onClick={handleSave}>
+            Lưu
+          </CButton>
+          <CButton
+            type='submit'
+            size='l'
+            variant='outline'
+            className='profile-content-btn'
+            color='dark'
+            onClick={() => setIsViewMode(true)}>
+            Hủy
+          </CButton>
+        </>
+      );
+    return null;
   };
   return (
-    <CContainer>
-      <CCard>
-        <CCardHeader className='profile-title'>
-          Thông tin cá nhân
-          {isViewMode && (
-            <CButton
-              className='btnEdit'
-              size='sm'
-              color='danger'
-              onClick={handleMode}
-              variant='outline'>
-              <Icon
-                path={mdiAccountEditOutline}
-                size={1}
-                title='Edit Profile'
-              />
-              Cập nhật
-            </CButton>
-          )}
-        </CCardHeader>
-
-        <CCardBody className='profile-content'>
-          <CForm className='form-horizontal'>
-            <CFormGroup row>
-              <CCol md='3'>
-                <CLabel htmlFor='text-fullname'>Họ tên</CLabel>
-              </CCol>
-              <CCol xs='12' md='6'>
-                <input
-                  ref={fullNameRef}
-                  type='text'
-                  placeholder='Fullname'
-                  autoComplete='fullname'
-                  disabled={isViewMode}
-                />
-              </CCol>
-            </CFormGroup>
-            <CFormGroup row>
-              <CCol md='3'>
-                <CLabel htmlFor='text-password'>Mật khẩu</CLabel>
-              </CCol>
-              <CCol xs='12' md='6'>
-                <input
-                  ref={passwordRef}
-                  type='password'
-                  className='email_input'
-                  placeholder='*********'
-                  disabled={isViewMode}
-                />
-              </CCol>
-            </CFormGroup>
-
-            {!isViewMode && (
-              <>
-                <CButton
-                  type='submit'
-                  size='sm'
-                  className='profile-content-btn'
-                  color='primary'
-                  variant='outline'
-                  onClick={handleSave}>
-                  Cập nhật
-                </CButton>
-
-                <CButton
-                  type='submit'
-                  size='sm'
-                  variant='outline'
-                  className='profile-content-btn'
-                  color='danger'
-                  onClick={handleCancel}>
-                  Hủy cập nhật
-                </CButton>
-              </>
-            )}
-          </CForm>
-        </CCardBody>
-      </CCard>
-    </CContainer>
+    <CRow>
+      <CCol xs='12' md='2'>
+        <CLabel htmlFor='text-fullname'>{label}</CLabel>
+      </CCol>
+      <CCol xs='12' md='7'>
+        <input
+          ref={inputRef}
+          type='text'
+          placeholder={placeholder}
+          disabled={isViewMode}
+        />
+        {renderBtn(!isViewMode)}
+      </CCol>
+      <CCol xs='12' md='3'>
+        {isViewMode && (
+          <span
+            className='btnEdit'
+            size='l'
+            color='primary'
+            onClick={() => setIsViewMode(false)}
+            variant='outline'>
+            Chỉnh sửa
+          </span>
+        )}
+      </CCol>
+    </CRow>
   );
 };
 
-export default Profile;
+const ConfigList = () => {
+  const listTabProfile = [
+    {
+      id: 0,
+      label: 'Chung',
+      childComponent: <GeneralEdit />
+    },
+    {
+      id: 1,
+      label: 'Bảo mật và đăng nhập',
+      childComponent: <Password />
+    }
+  ];
+  const [activeTab, setActiveTab] = React.useState(listTabProfile[0].id);
+
+  const handleActiveTab = id => {
+    setActiveTab(id);
+  };
+  return (
+    <div>
+      <CRow>
+        <CCol sm='12' xl='4'>
+          <div>Cài đặt</div>
+          <CListGroup>
+            {listTabProfile.map(item => {
+              return (
+                <CListGroupItem
+                  key={item.id}
+                  onClick={() => handleActiveTab(item.id)}
+                  className={`${activeTab === item.id ? 'active-tab' : ''}`}>
+                  {item.label}
+                </CListGroupItem>
+              );
+            })}
+          </CListGroup>
+        </CCol>
+        <CCol sm='12' xl='8'>
+          <CListGroup>
+            {listTabProfile.map(item => {
+              return (
+                activeTab === item.id && (
+                  <div key={item.id}>{item.childComponent}</div>
+                )
+              );
+            })}
+          </CListGroup>
+        </CCol>
+      </CRow>
+    </div>
+  );
+};
+
+const Profile2 = () => {
+  return <ConfigList />;
+};
+export default Profile2;

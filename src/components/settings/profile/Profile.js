@@ -17,6 +17,8 @@ import {
   CLink
 } from '@coreui/react';
 import { getValueRef } from '../../../share/commonFunc';
+import { mdiAccountEditOutline } from '@mdi/js';
+import Icon from '@mdi/react';
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -57,20 +59,30 @@ const Profile = () => {
   return (
     <CContainer>
       <CCard>
-        <CCardHeader>
-          THÔNG TIN CÁ NHÂN
+        <CCardHeader className='profile-title'>
+          Thông tin cá nhân
           {isViewMode && (
-            <CButton size='sm' color='danger' onClick={handleMode}>
-              Action
+            <CButton
+              className='btnEdit'
+              size='sm'
+              color='danger'
+              onClick={handleMode}
+              variant='outline'>
+              <Icon
+                path={mdiAccountEditOutline}
+                size={1}
+                title='Edit Profile'
+              />
+              Cập nhật
             </CButton>
           )}
         </CCardHeader>
 
-        <CCardBody>
+        <CCardBody className='profile-content'>
           <CForm className='form-horizontal'>
             <CFormGroup row>
               <CCol md='3'>
-                <CLabel htmlFor='text-fullname'>Fullname</CLabel>
+                <CLabel htmlFor='text-fullname'>Họ tên</CLabel>
               </CCol>
               <CCol xs='12' md='6'>
                 <input
@@ -84,7 +96,7 @@ const Profile = () => {
             </CFormGroup>
             <CFormGroup row>
               <CCol md='3'>
-                <CLabel htmlFor='text-password'>Password</CLabel>
+                <CLabel htmlFor='text-password'>Mật khẩu</CLabel>
               </CCol>
               <CCol xs='12' md='6'>
                 <input
@@ -102,19 +114,21 @@ const Profile = () => {
                 <CButton
                   type='submit'
                   size='sm'
-                  className='mr-5'
+                  className='profile-content-btn'
                   color='primary'
+                  variant='outline'
                   onClick={handleSave}>
-                  Save
+                  Cập nhật
                 </CButton>
 
                 <CButton
                   type='submit'
                   size='sm'
-                  className='mr-5'
-                  color='primary'
+                  variant='outline'
+                  className='profile-content-btn'
+                  color='danger'
                   onClick={handleCancel}>
-                  Cancel
+                  Hủy cập nhật
                 </CButton>
               </>
             )}

@@ -1,14 +1,15 @@
 import React from 'react';
 
-const Exam = React.lazy(() => import('../components/settings/exams/Exam'));
+const Exams = React.lazy(() => import('../components/settings/exams/Exams'));
 const addExam = React.lazy(() =>
   import('../components/settings/exams/AddExam')
 );
 
-const Users = React.lazy(() => import('../components/settings/users/ListUser'));
+const Users = React.lazy(() => import('../components/settings/users/Users'));
+const Guest = React.lazy(() => import('../components/settings/users/Guest'));
 
-const createUser = React.lazy(() =>
-  import('../components/settings/users/CreateUser')
+const addUser = React.lazy(() =>
+  import('../components/settings/users/AddUser')
 );
 
 const profile = React.lazy(() =>
@@ -98,15 +99,27 @@ const routes = [
   { path: '/', exact: true, name: 'Home' },
   { path: '/dashboard', name: 'Dashboard', component: Dashboard },
   { path: '/ThongTinCaNhan', name: 'Thông tin cá nhân', component: profile },
-  { path: '/QuanLy', name: 'Quản lý', component: Exam, exact: true },
-  { path: '/QuanLy/TaiKhoanAdmin', name: '', component: Users, exact: true },
+  // { path: '/QuanLy', name: 'Quản lý', component: Exam, exact: true },
+  {
+    path: '/QuanLy/TaiKhoanAdmin',
+    name: 'Tài khoản Admin',
+    component: Users,
+    exact: true
+  },
+  {
+    path: '/QuanLy/TaiKhoanHocVien',
+    name: 'Tài khoản Học Viên',
+    component: Guest,
+    exact: true
+  },
+
   {
     path: '/QuanLy/TaiKhoanAdmin/ThemAdmin',
     name: 'Thêm admin',
-    component: createUser
+    component: addUser
   },
   { path: '/QuanLy/TaiKhoanNguoiDung', name: 'Tài khoản', component: Users },
-  { path: '/QuanLy/DeThi', name: 'Đề thi', component: Exam, exact: true },
+  { path: '/QuanLy/DeThi', name: 'Đề thi', component: Exams, exact: true },
   { path: '/QuanLy/DeThi/ThemDeThi', name: 'Thêm đề thi', component: addExam },
   { path: '/theme', name: 'Theme', component: Colors, exact: true },
   { path: '/theme/colors', name: 'Colors', component: Colors },

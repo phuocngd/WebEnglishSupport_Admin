@@ -25,7 +25,7 @@ const App = () => {
       <React.Suspense fallback={loading}>
         <Switch>
           <Route exact path='/login' name='Login Page'>
-            {/*  {!isloggedIn ? <Login /> : <Redirect to="/" />} phuoc */}
+             {/* {!isloggedIn ? <Login /> : <Redirect to="/" />} phuoc */}
             <Login />
           </Route>
           <Route exact path='/register' name='Register Page'>
@@ -39,7 +39,7 @@ const App = () => {
           </Route>
           <Route path='/' name='Home'>
             <TheLayout />
-            {/*   {isloggedIn ? <TheLayout /> : <Redirect to="/login" />} phuoc */}
+              {/* {isloggedIn ? <TheLayout /> : <Redirect to="/login" />} phuoc */}
           </Route>
         </Switch>
       </React.Suspense>

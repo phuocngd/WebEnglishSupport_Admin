@@ -9,7 +9,8 @@ import {
   CLink
 } from '@coreui/react';
 import CIcon from '@coreui/icons-react';
-
+import Icon from '@mdi/react';
+import { mdiAccountPlus } from '@mdi/js';
 const Users = () => {
   const [users, setUsers] = useState();
   return (
@@ -17,22 +18,15 @@ const Users = () => {
       <CRow>
         <CCol>
           <CCard>
-            <CCardHeader>
-              QUẢN LÝ TÀI KHOẢN ADMIN
-              <div className='card-header-actions'>
-                <CLink to='/Quản lý/Tài khoản admin/Thêm admin'>
-                  <CButton block variant='outline' color='primary' size='sm'>
-                    Thêm đề thi
-                  </CButton>
-                </CLink>
-              </div>
+            <CCardHeader className='users-title'>
+              DANH SÁCH TÀI KHOẢN HỌC VIÊN
             </CCardHeader>
-            <CCardBody>
+            <CCardBody className='users-content'>
               <table className='table table-hover table-outline mb-0 d-none d-sm-table'>
                 <thead className='thead-light'>
                   <tr>
                     <th className='text-center '>Số thứ tự</th>
-                    <th className='text-center'>Họ tên</th>
+                    <th className='text-center'>Học viên</th>
                     <th className='text-center'>Email</th>
                     <th className='text-center'>Ngày tạo tài khoản</th>
                   </tr>

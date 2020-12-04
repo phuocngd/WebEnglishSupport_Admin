@@ -52,8 +52,8 @@ const CreateUser = () => {
   return (
     <div>
       <CCard>
-        <CCardHeader>THÊM TÀI KHOẢN ADMIN</CCardHeader>
-        <CCardBody>
+        <CCardHeader className='users-title'>THÊM TÀI KHOẢN ADMIN</CCardHeader>
+        <CCardBody className='users-content'>
           <CForm className='form-horizontal'>
             <CFormGroup row>
               <CCol md='3'>
@@ -83,23 +83,27 @@ const CreateUser = () => {
                   required
                 />
               </CCol>
-              <CButton
-                type='submit'
-                size='sm'
-                className='mr-5'
-                color='primary'
-                onClick={handleCreateAccount}>
-                <CIcon name='cil-scrubber' /> Thêm mới
-              </CButton>
-              <CButton type='reset' size='sm' color='danger'>
-                <CIcon name='cil-ban' /> Quay lại
-              </CButton>
             </CFormGroup>
+            <CButton
+              type='submit'
+              size='sm'
+              className='users-content-btn'
+              color='primary'
+              variant='outline'
+              onClick={handleCreateAccount}>
+              Thêm mới
+            </CButton>
+
+            <CButton
+              type='submit'
+              size='sm'
+              variant='outline'
+              color='danger'
+              className='users-content-btn'>
+              Hủy
+            </CButton>
           </CForm>
         </CCardBody>
-        <CCardFooter>
-          {/* <CButton type="submit" size="sm" className="mr-5" color="primary"><CIcon name="cil-scrubber" /> Thêm mới</CButton> */}
-        </CCardFooter>
       </CCard>
     </div>
   );

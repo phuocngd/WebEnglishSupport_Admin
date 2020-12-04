@@ -1,4 +1,5 @@
 // config slidebar
+
 export default [
   {
     _tag: 'CSidebarNavItem',
@@ -10,16 +11,6 @@ export default [
       text: 'NEW'
     }
   },
-  // {
-  //   _tag: 'CSidebarNavItem',
-  //   name: 'ThongTinCaNhan',
-  //   to: '/ThongTinCaNhan',
-  //   icon: 'cil-speedometer',
-  //   badge: {
-  //     color: 'info',
-  //     text: 'NEW'
-  //   }
-  // },
   {
     _tag: 'CSidebarNavTitle',
     _children: ['Quản lý']
@@ -44,17 +35,8 @@ export default [
   },
   {
     _tag: 'CSidebarNavItem',
-    name: 'Thêm admin',
-    to: '/QuanLy/TaiKhoanAdmin/ThemAdmin',
-    icon: 'cil-chart-line',
-    badge: {
-      color: 'info'
-    }
-  },
-  {
-    _tag: 'CSidebarNavItem',
-    name: 'Tài khoản người dùng',
-    to: '/QuanLy/TaiKhoanNguoiDung',
+    name: 'Tài khoản học viên',
+    to: '/QuanLy/TaiKhoanHocVien',
     icon: 'cil-people',
     badge: {
       color: 'info'
@@ -65,7 +47,7 @@ export default [
     _tag: 'CSidebarNavItem',
     name: 'Đề thi',
     to: '/QuanLy/DeThi',
-    icon: 'cil-chart-line',
+    icon: 'cil-people',
     badge: {
       color: 'info'
     }

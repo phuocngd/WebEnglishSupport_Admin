@@ -17,7 +17,7 @@ const Exams = () => {
       <CRow>
         <CCol>
           <CCard>
-            <CCardHeader>
+            <CCardHeader className="exam-title">
               QUẢN LÝ ĐỀ THI
               <div className='card-header-actions'>
                 <CLink to='/QuanLy/DeThi/ThemDeThi'>

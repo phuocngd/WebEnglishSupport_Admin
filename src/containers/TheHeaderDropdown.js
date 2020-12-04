@@ -31,7 +31,7 @@ const TheHeaderDropdown = () => {
         </div>
       </CDropdownToggle>
       <CDropdownMenu className='pt-0' placement='bottom-end'>
-        <CDropdownItem>
+        <CDropdownItem className='header-dropdown-profile'>
           <CLink to='/ThongTinCaNhan'>
             <CIcon name='cil-user' className='mfe-2' />
             Profile

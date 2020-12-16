@@ -64,7 +64,7 @@ const TheHeader = () => {
           <CHeaderNavLink to='/dashboard'>Dashboard</CHeaderNavLink>
         </CHeaderNavItem>
         <CHeaderNavItem className='px-3'>
-          <CHeaderNavLink to='/users'>Users</CHeaderNavLink>
+          <CHeaderNavLink to='/QuanLy/TaiKhoanAdmin'>Users</CHeaderNavLink>
         </CHeaderNavItem>
         <CHeaderNavItem className='px-3'>
           <CHeaderNavLink>Settings</CHeaderNavLink>
@@ -72,9 +72,9 @@ const TheHeader = () => {
       </CHeaderNav>
 
       <CHeaderNav className='px-3'>
-        <TheHeaderDropdownNotif />
+        {/* <TheHeaderDropdownNotif />
         <TheHeaderDropdownTasks />
-        <TheHeaderDropdownMssg />
+        <TheHeaderDropdownMssg /> */}
         <TheHeaderDropdown />
       </CHeaderNav>
 

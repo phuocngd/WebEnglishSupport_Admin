@@ -1,4 +1,4 @@
-import React, { lazy, useState } from 'react';
+import React, { lazy, useState, useEffect } from 'react';
 import {
   CCard,
   CCardBody,
@@ -10,16 +10,28 @@ import {
 } from '@coreui/react';
 import Icon from '@mdi/react';
 import { mdiAccountPlus } from '@mdi/js';
-import { mdiPencilOutline } from '@mdi/js';
-import { mdiDelete } from '@mdi/js';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { getExamsRequest } from '../../../Store/slice/examSlide';
+import Exam from './Exam';
 const Exams = () => {
+  const { isloggedIn } = useSelector(state => state.authentication);
+  const [isLogin, setIsLogin] = useState(isloggedIn);
+  const exams = useSelector(state => state.exam).exams;
+  const dispatch = useDispatch();
+  const filterModel = {
+    url: 'http://localhost:9999/api/fullexam/'
+  };
+  useEffect(() => {
+    if (isLogin) {
+      dispatch(getExamsRequest(filterModel));
+    }
+  }, [isLogin]);
   return (
     <>
       <CRow>
         <CCol>
           <CCard>
-            <CCardHeader className='users-title'>
+            <CCardHeader className='exams-title'>
               QUẢN LÝ ĐỀ THI
               <div className='card-header-actions'>
                 <CLink to='/QuanLy/DeThi/ThemDeThi'>
@@ -28,7 +40,7 @@ const Exams = () => {
                     variant='outline'
                     color='primary'
                     size='sm'
-                    className='users-title-btn-add'>
+                    className='exams-title-btn-add'>
                     <Icon
                       path={mdiAccountPlus}
                       size={1}
@@ -40,46 +52,29 @@ const Exams = () => {
                 </CLink>
               </div>
             </CCardHeader>
-            <CCardBody className='users-content'>
+            <CCardBody className='exams-content'>
               <table className='table table-hover table-outline mb-0 d-none d-sm-table'>
                 <thead className='thead-light'>
                   <tr>
                     <th className='text-center '>Số thứ tự</th>
-                    <th className='text-center'>Tên đề thi</th>
-                    <th className='text-center'>Mô tả</th>
-                    <th className='text-center'>Ngày tạo</th>
-                    <th className='text-center'>Chỉnh sửa</th>
+                    <th scope='col' className='text-center'>
+                      Tên đề thi
+                    </th>
+                    <th scope='col' className='text-center'>
+                      Mô tả
+                    </th>
+                    <th scope='col' className='text-center'>
+                      Ngày tạo
+                    </th>
+                    <th scope='col' className='text-center'>
+                      Chỉnh sửa
+                    </th>
                   </tr>
                 </thead>
                 <tbody className='text-center'>
-                  <tr>
-                    <td>
-                      <div>1</div>
-                    </td>
-                    <td>
-                      <div>Đề 1</div>
-                    </td>
-                    <td className='text-center'>
-                      <div>Chưa cập nhật</div>
-                    </td>
-                    <td>
-                      <div className='clearfix'>2020-10-31</div>
-                    </td>
-                    <td>
-                        <Icon
-                          path={mdiPencilOutline}
-                          size={1}
-                          title='Edit Exam'
-                          className='mr-1'
-                        />
-                      <Icon
-                        path={mdiDelete}
-                        size={1}
-                        title='Delete Exam'
-                        className='mr-1'
-                      />
-                    </td>
-                  </tr>
+                  {exams.map((exam, index) => (
+                    <Exam key={exam._id} exam={exam} stt={index + 1} />
+                  ))}
                 </tbody>
               </table>
             </CCardBody>

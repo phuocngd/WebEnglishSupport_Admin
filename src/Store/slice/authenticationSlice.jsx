@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { axiosGet, axiosPost } from '../../axios/axios';
-import CryptoJS from 'crypto-js';
+import {decrypt} from '../../share/decrypt'
 const signinRequest = createAsyncThunk('account/signin', async model => {
   const response = await axiosPost(model);
   return response.data;
@@ -9,10 +9,7 @@ const signupRequest = createAsyncThunk('account/signup', async model => {
   const response = await axiosPost(model);
   return response.data;
 });
-const decrypt = value => {
-  const bytes = CryptoJS.AES.decrypt(value, 'SecretPassphrase'); // SecretPassphrase can handle by server
-  return bytes.toString(CryptoJS.enc.Utf8);
-};
+
 const getStateLogin = () => {
   const username = decrypt('loginUserState');
   if (username) {

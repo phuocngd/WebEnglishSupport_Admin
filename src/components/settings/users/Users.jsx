@@ -10,9 +10,12 @@ import {
 } from '@coreui/react';
 import CIcon from '@coreui/icons-react';
 import Icon from '@mdi/react';
-import { mdiAccountPlus} from '@mdi/js';
+import { mdiAccountPlus } from '@mdi/js';
+import { Link, Redirect } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+
 const Users = () => {
-  const [users, setUsers] = useState();
+
   return (
     <>
       <CRow>

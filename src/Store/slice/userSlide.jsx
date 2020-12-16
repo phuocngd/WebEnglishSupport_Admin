@@ -1,36 +1,34 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { axiosGet, axiosPost } from '../../axios/axios';
-
-const listUsersRequest = createAsyncThunk('account/listUsers', async model => {
+import {decrypt} from '../../share/decrypt'
+const getAccountsRequest = createAsyncThunk('/listUser', async model => {
   const respone = await axiosGet(model);
   return respone.data;
 });
 
+
 const getUsersSlide = createSlice({
-  name: 'listUsers',
+  name: 'accounts',
   initialState: {
-    listUsers: []
+    token: localStorage.getItem('token'),
+    accounts: [],
+    loading: false,
+    error: {}
   },
   reducers: {
-    getListUsers: (state, action) => {
-      state.listUsers = action.payload;
+    getUsers: (state, action) => {
+      state.accounts = action.payload;
     }
   },
   extraReducers: {
-    [listUsersRequest.pending]: (state, action) => {
+    [getAccountsRequest.pending]: (state, action) => {
       console.log('pending');
     },
-    [listUsersRequest.fulfilled]: (state, action) => {
-      const data = action.payload;
-
-      state.loginState = {
-        token: data[0],
-        listUsers: data[1],
-        rule: data[2]
-      };
+    [getAccountsRequest.fulfilled]: (state, action) => {
+      state.accounts = action.payload;
       console.log('fulfilled');
     },
-    [listUsersRequest.rejected]: (state, action) => {
+    [getAccountsRequest.rejected]: (state, action) => {
       console.log('rejected');
     }
   }

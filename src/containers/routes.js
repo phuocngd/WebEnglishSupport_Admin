@@ -2,10 +2,10 @@ import React from 'react';
 
 const Exams = React.lazy(() => import('../components/settings/exams/Exams'));
 const addExam = React.lazy(() =>
-  import('../components/settings/exams/AddExam')
+  import('../components/settings/exams/AddExam.jsx')
 );
 
-const Users = React.lazy(() => import('../components/settings/users/Users'));
+const Admin = React.lazy(() => import('../components/settings/users/Users'));
 const Guest = React.lazy(() => import('../components/settings/users/Guest'));
 
 const addUser = React.lazy(() =>
@@ -103,7 +103,7 @@ const routes = [
   {
     path: '/QuanLy/TaiKhoanAdmin',
     name: 'Tài khoản Admin',
-    component: Users,
+    component: Admin,
     exact: true
   },
   {
@@ -118,7 +118,7 @@ const routes = [
     name: 'Thêm admin',
     component: addUser
   },
-  { path: '/QuanLy/TaiKhoanNguoiDung', name: 'Tài khoản', component: Users },
+  { path: '/QuanLy/TaiKhoanNguoiDung', name: 'Tài khoản', component: Admin },
   { path: '/QuanLy/DeThi', name: 'Đề thi', component: Exams, exact: true },
   { path: '/QuanLy/DeThi/ThemDeThi', name: 'Thêm đề thi', component: addExam },
   { path: '/theme', name: 'Theme', component: Colors, exact: true },
@@ -173,9 +173,9 @@ const routes = [
   { path: '/notifications/badges', name: 'Badges', component: Badges },
   { path: '/notifications/modals', name: 'Modals', component: Modals },
   { path: '/notifications/toaster', name: 'Toaster', component: Toaster },
-  { path: '/widgets', name: 'Widgets', component: Widgets },
-  { path: '/users', exact: true, name: 'Users', component: Users },
-  { path: '/users/:id', exact: true, name: 'User Details', component: User }
+  { path: '/widgets', name: 'Widgets', component: Widgets }
+  // { path: '/users', exact: true, name: 'Users', component: Users },
+  // { path: '/users/:id', exact: true, name: 'User Details', component: User }
 ];
 const routes2 = [];
 export default routes;

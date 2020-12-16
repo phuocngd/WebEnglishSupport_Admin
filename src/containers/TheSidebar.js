@@ -23,7 +23,7 @@ const TheSidebar = () => {
   const show = useSelector(state => state.sidebarShow);
   return (
     <CSidebar
-      show={true}
+      show={show.isShow}
       onShowChange={val => dispatch(showHideSidebar(val))}>
       <CSidebarBrand className='d-md-down-none' to='/'>
         {/* icon bran set here */}

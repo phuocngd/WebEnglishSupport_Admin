@@ -19,7 +19,6 @@ import {
   CListGroupItem,
   CRow
 } from '@coreui/react';
-import { getValueRef } from '../../../share/commonFunc';
 import { mdiAccountEditOutline } from '@mdi/js';
 import Icon from '@mdi/react';
 import CIcon from '@coreui/icons-react';
@@ -29,7 +28,7 @@ const GeneralEdit = () => {
   return <OneItemCanEdit label='Họ và tên' placeholder='anh yeu em' />;
 };
 const Password = () => {
-  return <OneItemCanEdit label='Mật khẩu' placeholder='*******'/>;
+  return <OneItemCanEdit label='Mật khẩu' placeholder='*******' />;
 };
 
 const OneItemCanEdit = props => {

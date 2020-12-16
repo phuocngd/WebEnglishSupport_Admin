@@ -10,14 +10,13 @@ import {
   CLink
 } from '@coreui/react';
 import CIcon from '@coreui/icons-react';
-import { logout } from '../Store/slice/authenticationSlice';
+import { logOut } from '../Store/slice/authenticationSlice';
 
 const TheHeaderDropdown = () => {
   const dispatch = useDispatch();
+
   const handelLogout = () => {
-    dispatch(logout());
-    // eslint-disable-next-line no-restricted-globals
-    location.reload();
+    dispatch(logOut());
   };
   return (
     <CDropdown inNav className='c-header-nav-items mx-2' direction='down'>
@@ -37,7 +36,7 @@ const TheHeaderDropdown = () => {
             Profile
           </CLink>
         </CDropdownItem>
-        <CDropdownItem>
+        <CDropdownItem onClick={handelLogout}>
           <CIcon name='cil-settings' className='mfe-2' />
           Logout
         </CDropdownItem>

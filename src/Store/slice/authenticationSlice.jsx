@@ -1,34 +1,31 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { axiosGet, axiosPost } from '../../axios/axios';
-import {decrypt} from '../../share/decrypt'
-const signinRequest = createAsyncThunk('account/signin', async model => {
+import { axiosGet, axiosPost, post } from '../../axios/axios';
+
+const signIn = createAsyncThunk('account/signin', async model => {
   const response = await axiosPost(model);
   return response.data;
 });
-const signupRequest = createAsyncThunk('account/signup', async model => {
+const signUP = createAsyncThunk('account/signup', async model => {
   const response = await axiosPost(model);
   return response.data;
 });
 
-const getStateLogin = () => {
-  const username = decrypt('loginUserState');
-  if (username) {
-    return true;
-  }
-  return false;
-};
 const authenticationSlice = createSlice({
   name: 'authentication',
   initialState: {
-    loginState: null,
-    isloggedIn: false
+    loginState: sessionStorage.getItem('login')
+      ? JSON.parse(sessionStorage.getItem('login'))
+      : {},
+    isLogin: sessionStorage.getItem('isLogin')
+      ? JSON.parse(sessionStorage.getItem('isLogin'))
+      : false,
+    loading: false
   },
   reducers: {
-    login: (state, action) => {
-      state.isLogin = action.payload;
-    },
-    logout: state => {
+    logOut: state => {
       state.loginState = {};
+      state.isLogin = false;
+      sessionStorage.clear();
     },
     updateStateLogin: (state, action) => {
       const data = action.payload;
@@ -40,30 +37,26 @@ const authenticationSlice = createSlice({
     }
   },
   extraReducers: {
-    [signinRequest.pending]: (state, action) => {
-      console.log('pending');
-    },
-    [signinRequest.fulfilled]: (state, action) => {
+    [signIn.pending]: (state, action) => {},
+    [signIn.fulfilled]: (state, action) => {
       const data = action.payload;
-
-      state.loginState = {
+      const loginState = {
         token: data[0],
         email: data[1],
         rule: data[2]
       };
-      state.isloggedIn = true;
-      console.log('fulfilled');
+      state.loginState = loginState;
+      state.isLogin = true;
+      sessionStorage.setItem('login', JSON.stringify(loginState));
+      sessionStorage.setItem('isLogin', JSON.stringify(true));
     },
-    [signinRequest.rejected]: (state, action) => {
-      console.log('rejected');
-      state.isloggedIn = false;
+    [signIn.rejected]: (state, action) => {
+      state.isLogin = false;
       state.messageLog = 'logfail';
     },
 
-    [signupRequest.pending]: (state, action) => {
-      console.log('pending');
-    },
-    [signupRequest.fulfilled]: (state, action) => {
+    [signUP.pending]: (state, action) => {},
+    [signUP.fulfilled]: (state, action) => {
       const data = action.payload;
 
       state.loginState = {
@@ -71,15 +64,11 @@ const authenticationSlice = createSlice({
         email: data[1],
         rule: data[2]
       };
-      console.log('fulfilled');
     },
-    [signupRequest.rejected]: (state, action) => {
-      console.log('rejected');
-    }
+    [signUP.rejected]: (state, action) => {}
   }
 });
 const { reducer, actions } = authenticationSlice;
-const { login, logout, updateStateLogin } = actions;
-export { login, logout, updateStateLogin, signinRequest, signupRequest };
-// Export the reducer, either as a default or named export
+const { logOut, updateStateLogin } = actions;
+export { logOut, updateStateLogin, signIn, signUP };
 export default reducer;

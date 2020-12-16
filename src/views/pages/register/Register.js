@@ -5,11 +5,9 @@ import {
   CButton,
   CCard,
   CCardBody,
-  CCardFooter,
   CCol,
   CContainer,
   CForm,
-  CInput,
   CInputGroup,
   CInputGroupPrepend,
   CInputGroupText,
@@ -36,7 +34,7 @@ const Register = () => {
     )
       return null;
     if (!validate(emailRef.current.value)) {
-      alert('Email không hợp lệ');
+      alert('email invalid');
       return null;
     }
     const filterModel = {
@@ -47,9 +45,9 @@ const Register = () => {
     };
     const res = await axiosPost(filterModel);
     if (res) {
-      alert('Tạo tài khoản thành công');
+      alert('tao thanh cong');
     } else {
-      alert('Tạo tài khoản không thành công');
+      alert('tao khong thanh cong');
     }
     // dispatch(signupRequest(filterModel))
   };
@@ -57,9 +55,9 @@ const Register = () => {
     <div className='c-app c-default-layout flex-row align-items-center'>
       <CContainer>
         <CRow className='justify-content-center'>
-          <CCol md='9' lg='7' xl='6'>
-            <CCard className='mx-4'>
-              <CCardBody className='p-4'>
+          <CCol md='7' lg='5' xl='4'>
+            <CCard className='p-4'>
+              <CCardBody>
                 <CForm>
                   <h1>Register</h1>
                   <p className='text-muted'>Create your account</p>
@@ -103,25 +101,16 @@ const Register = () => {
                       required
                     />
                   </CInputGroup>
-                  <CButton color='success' block onClick={handelCreateAccount}>
-                    Create Account
-                  </CButton>
+                  <div className='login-footer'>
+                    <CButton
+                      color='success'
+                      block
+                      onClick={handelCreateAccount}>
+                      Create Account
+                    </CButton>
+                  </div>
                 </CForm>
               </CCardBody>
-              <CCardFooter className='p-4'>
-                <CRow>
-                  <CCol xs='12' sm='6'>
-                    <CButton className='btn-facebook mb-1' block>
-                      <span>facebook</span>
-                    </CButton>
-                  </CCol>
-                  <CCol xs='12' sm='6'>
-                    <CButton className='btn-twitter mb-1' block>
-                      <span>twitter</span>
-                    </CButton>
-                  </CCol>
-                </CRow>
-              </CCardFooter>
             </CCard>
           </CCol>
         </CRow>

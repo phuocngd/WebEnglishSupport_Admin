@@ -13,20 +13,19 @@ const TheLayout = React.lazy(() => import('./containers/TheLayout'));
 
 // Pages
 const Login = React.lazy(() => import('./views/pages/login/Login'));
+
 const Register = React.lazy(() => import('./views/pages/register/Register'));
 const Page404 = React.lazy(() => import('./views/pages/page404/Page404'));
 const Page500 = React.lazy(() => import('./views/pages/page500/Page500'));
 
 const App = () => {
-  const isloggedIn = useSelector(state => state.authentication).isloggedIn;
-
+  const isLogin = useSelector(state => state.authentication.isLogin);
   return (
     <HashRouter>
       <React.Suspense fallback={loading}>
         <Switch>
           <Route exact path='/login' name='Login Page'>
-             {/* {!isloggedIn ? <Login /> : <Redirect to="/" />} phuoc */}
-            <Login />
+            {!isLogin ? <Login /> : <Redirect to='/' />}
           </Route>
           <Route exact path='/register' name='Register Page'>
             <Register />
@@ -38,8 +37,8 @@ const App = () => {
             <Page500 />
           </Route>
           <Route path='/' name='Home'>
-            <TheLayout />
-              {/* {isloggedIn ? <TheLayout /> : <Redirect to="/login" />} phuoc */}
+            {/* <TheLayout /> */}
+            {isLogin ? <TheLayout /> : <Redirect to='/login' />}
           </Route>
         </Switch>
       </React.Suspense>

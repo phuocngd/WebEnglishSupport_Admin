@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { validate } from 'email-validator';
 import useEncrypt from '../../hook/useEncrypt';
 import { axiosPost } from '../../../axios/axios';
@@ -23,16 +23,30 @@ import { mdiAccountEditOutline } from '@mdi/js';
 import Icon from '@mdi/react';
 import CIcon from '@coreui/icons-react';
 import { Link } from 'react-router-dom';
+import Axios from 'axios';
 
 const GeneralEdit = () => {
-  return <OneItemCanEdit label='Họ và tên' placeholder='anh yeu em' />;
+  return (
+    <>
+      <OneItemCanEdit
+        label='Họ và tên'
+        placeholder='nguyen duy'
+        type='text'
+        apiURL={'http://localhost:9999/api/profile/name'}
+      />
+      <OneItemCanEdit label='SĐT' placeholder='0123456789' type='text' />
+    </>
+  );
 };
 const Password = () => {
-  return <OneItemCanEdit label='Mật khẩu' placeholder='*******' />;
+  return (
+    <OneItemCanEdit label='Mật khẩu' placeholder='*******' type='password' />
+  );
 };
 
 const OneItemCanEdit = props => {
-  const { label, placeholder, url } = props;
+  const email = useSelector(state => state.authentication.loginState.email);
+  const { label, placeholder, type, apiURL } = props;
   const dispatch = useDispatch();
   const [isViewMode, setIsViewMode] = useState(true);
   const [mahoa] = useEncrypt();
@@ -40,7 +54,10 @@ const OneItemCanEdit = props => {
   const inputRef = useRef();
 
   const handleSave = async () => {
-    // handle logic send update tung cai o đây
+    const res = await Axios.post(apiURL, {
+      email: email,
+      value: '0937'
+    });
     setIsViewMode(true);
   };
 
@@ -51,7 +68,7 @@ const OneItemCanEdit = props => {
           <CButton
             type='submit'
             size='l'
-            className='profile-content-btn'
+            className='item-btn-success'
             color='primary'
             variant='outline'
             onClick={handleSave}>
@@ -61,7 +78,7 @@ const OneItemCanEdit = props => {
             type='submit'
             size='l'
             variant='outline'
-            className='profile-content-btn'
+            className='item-btn-cancel'
             color='dark'
             onClick={() => setIsViewMode(true)}>
             Hủy
@@ -71,30 +88,30 @@ const OneItemCanEdit = props => {
     return null;
   };
   return (
-    <CRow>
+    <CRow className='item'>
       <CCol xs='12' md='2'>
-        <CLabel htmlFor='text-fullname'>{label}</CLabel>
+        <CLabel className='item-label'>{label}</CLabel>
       </CCol>
-      <CCol xs='12' md='7'>
+      <CCol xs='12' md='10'>
         <input
           ref={inputRef}
-          type='text'
+          type={type}
           placeholder={placeholder}
           disabled={isViewMode}
         />
-        {renderBtn(!isViewMode)}
-      </CCol>
-      <CCol xs='12' md='3'>
-        {isViewMode && (
-          <span
-            className='btnEdit'
-            size='l'
-            color='primary'
-            onClick={() => setIsViewMode(false)}
-            variant='outline'>
-            Chỉnh sửa
-          </span>
-        )}
+        <span className='item-control'>
+          {renderBtn(!isViewMode)}
+          {isViewMode && (
+            <span
+              className='item-btnEdit'
+              size='l'
+              color='primary'
+              onClick={() => setIsViewMode(false)}
+              variant='outline'>
+              Chỉnh sửa
+            </span>
+          )}
+        </span>
       </CCol>
     </CRow>
   );
@@ -121,9 +138,9 @@ const ConfigList = () => {
   return (
     <div>
       <CRow>
-        <CCol sm='12' xl='4'>
-          <div>Cài đặt</div>
-          <CListGroup>
+        <CCol sm='12' md='4' className='profile-left'>
+          <div className='profile-nav-header'>Cài đặt</div>
+          <CListGroup className='profile-nav-list'>
             {listTabProfile.map(item => {
               return (
                 <CListGroupItem
@@ -136,16 +153,14 @@ const ConfigList = () => {
             })}
           </CListGroup>
         </CCol>
-        <CCol sm='12' xl='8'>
-          <CListGroup>
-            {listTabProfile.map(item => {
-              return (
-                activeTab === item.id && (
-                  <div key={item.id}>{item.childComponent}</div>
-                )
-              );
-            })}
-          </CListGroup>
+        <CCol sm='12' md='8' className='profile-right'>
+          {listTabProfile.map(item => {
+            return (
+              activeTab === item.id && (
+                <div key={item.id}>{item.childComponent}</div>
+              )
+            );
+          })}
         </CCol>
       </CRow>
     </div>

@@ -1,35 +1,109 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { axiosGet, axiosPost } from '../../axios/axios';
-import {decrypt} from '../../share/decrypt'
-const getAccountsRequest = createAsyncThunk('/listUser', async model => {
+import { axiosGet, axiosPost, axiosDelete } from '../../axios/axios';
+const getAdminRequest = createAsyncThunk('/accoount/getAdmin', async model => {
   const respone = await axiosGet(model);
   return respone.data;
 });
+const getClientRequest = createAsyncThunk(
+  '/accoount/getClient',
+  async model => {
+    const respone = await axiosGet(model);
+    return respone.data;
+  }
+);
+const postAdminRequest = createAsyncThunk('/account/postAdmin', async model => {
+  const response = await axiosPost(model);
+  return response.data;
+});
 
+const deleteAdminRequest = createAsyncThunk(
+  '/account/deleteAdmin',
+  async model => {
+    const respone = await axiosDelete(model);
+    return respone.data;
+  }
+);
 
-const getUsersSlide = createSlice({
+const userSlide = createSlice({
   name: 'accounts',
   initialState: {
     token: localStorage.getItem('token'),
-    accounts: [],
+    clients: [],
+    admins: [],
     loading: false,
     error: {}
   },
   reducers: {
-    getUsers: (state, action) => {
-      state.accounts = action.payload;
+    getAdmins: (state, action) => {
+      const data = action.payload;
+      state.admins = data[0];
+    },
+    getClients: (state, action) => {
+      state.clients = action.payload[0];
+    },
+    createAdmin: (state, action) => {
+      state.admins = [action.payload, [...state.admins]];
+    },
+    deleteAdmin: (state, action) => {
+      state.admins = state.admins.filter(admin => admin._id != action.payload);
+      state.loading = true;
     }
   },
   extraReducers: {
-    [getAccountsRequest.pending]: (state, action) => {
+    [getAdminRequest.pending]: (state, action) => {
       console.log('pending');
     },
-    [getAccountsRequest.fulfilled]: (state, action) => {
-      state.accounts = action.payload;
+    [getAdminRequest.fulfilled]: (state, action) => {
+      state.admins = action.payload;
       console.log('fulfilled');
     },
-    [getAccountsRequest.rejected]: (state, action) => {
+    [getAdminRequest.rejected]: (state, action) => {
+      console.log('rejected');
+    },
+    [getClientRequest.pending]: (state, action) => {
+      console.log('pending');
+    },
+    [getClientRequest.fulfilled]: (state, action) => {
+      state.clients = action.payload;
+      console.log('fulfilled');
+    },
+    [getClientRequest.rejected]: (state, action) => {
+      console.log('rejected');
+    },
+    [postAdminRequest.pending]: (state, action) => {
+      console.log('pending');
+    },
+    [postAdminRequest.fulfilled]: (state, action) => {
+      state.admins = [action.payload, ...state.admins];
+      console.log('fulfilled');
+    },
+    [postAdminRequest.rejected]: (state, action) => {
+      console.log('rejected');
+    },
+    [deleteAdminRequest.pending]: (state, action) => {
+      console.log('pending');
+    },
+    [deleteAdminRequest.fulfilled]: (state, action) => {
+      state.admins = state.admins.filter(admin => admin._id != action.payload);
+      state.loading = true;
+
+      console.log('fulfilled');
+    },
+    [deleteAdminRequest.rejected]: (state, action) => {
       console.log('rejected');
     }
   }
 });
+const { reducer, actions } = userSlide;
+const { getAdmins, getClients, createAdmin, deleteAdmin } = actions;
+export {
+  getAdmins,
+  getClients,
+  createAdmin,
+  deleteAdmin,
+  getClientRequest,
+  getAdminRequest,
+  postAdminRequest,
+  deleteAdminRequest
+};
+export default reducer;

@@ -27,4 +27,14 @@ const axiosPost = async props => {
   return response;
 };
 
-export { axiosGet, axiosPost };
+const axiosDelete = async props => {
+  const { url, ...rest } = props;
+  let response;
+  try {
+    response = await axios.delete(url, rest);
+  } catch (error) {
+    console.error(error);
+  }
+  return response;
+};
+export { axiosGet, axiosPost, axiosDelete };

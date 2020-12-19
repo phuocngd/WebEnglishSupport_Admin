@@ -35,8 +35,8 @@ export default [
   },
   {
     _tag: 'CSidebarNavItem',
-    name: 'Tài khoản học viên',
-    to: '/QuanLy/TaiKhoanHocVien',
+    name: 'Tài khoản người dùng',
+    to: '/QuanLy/TaiKhoanNguoiDung',
     icon: 'cil-people',
     badge: {
       color: 'info'

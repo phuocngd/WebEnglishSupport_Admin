@@ -5,12 +5,8 @@ const addExam = React.lazy(() =>
   import('../components/settings/exams/AddExam.jsx')
 );
 
-const Admin = React.lazy(() => import('../components/settings/users/Users'));
-const Guest = React.lazy(() => import('../components/settings/users/Guest'));
-
-const addUser = React.lazy(() =>
-  import('../components/settings/users/AddUser')
-);
+const Admin = React.lazy(() => import('../components/settings/users/Admins'));
+const Clients = React.lazy(() => import('../components/settings/users/Clients'));
 
 const profile = React.lazy(() =>
   import('../components/settings/profile/Profile')
@@ -107,17 +103,12 @@ const routes = [
     exact: true
   },
   {
-    path: '/QuanLy/TaiKhoanHocVien',
-    name: 'Tài khoản Học Viên',
-    component: Guest,
+    path: '/QuanLy/TaiKhoanNguoiDung',
+    name: 'Tài khoản người dùng',
+    component: Clients,
     exact: true
   },
 
-  {
-    path: '/QuanLy/TaiKhoanAdmin/ThemAdmin',
-    name: 'Thêm admin',
-    component: addUser
-  },
   { path: '/QuanLy/TaiKhoanNguoiDung', name: 'Tài khoản', component: Admin },
   { path: '/QuanLy/DeThi', name: 'Đề thi', component: Exams, exact: true },
   { path: '/QuanLy/DeThi/ThemDeThi', name: 'Thêm đề thi', component: addExam },

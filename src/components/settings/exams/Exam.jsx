@@ -5,7 +5,6 @@ import { mdiDelete } from '@mdi/js';
 import Icon from '@mdi/react';
 
 const Exam = ({ exam, stt }) => {
-
   return (
     <tr>
       <td className='text-center'>{stt}</td>

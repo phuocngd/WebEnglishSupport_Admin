@@ -75,5 +75,12 @@ const examSlide = createSlice({
 
 const { reducer, actions } = examSlide;
 const { getExams, getOneExam, addExam } = actions;
-export { getExams, getExamsRequest, getExamRequest, getOneExam, postExamRequest, addExam };
+export {
+  getExams,
+  getExamsRequest,
+  getExamRequest,
+  getOneExam,
+  postExamRequest,
+  addExam
+};
 export default reducer;

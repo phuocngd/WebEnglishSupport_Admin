@@ -104,22 +104,26 @@ const Admins = () => {
               name: item => <td>{item.fullname}</td>,
               action: item => (
                 <td style={{ display: 'flex', justifyContent: 'start' }}>
-                  <div
-                    style={{
-                      display: 'flex',
-                      width: '80%',
-                      justifyContent: 'space-between'
-                    }}>
-                    <span
-                      className='c-subheader-nav-link'
-                      onClick={() => handleDelete(item)}>
-                      <CIcon
-                        style={{ color: 'red' }}
-                        name='cil-trash'
-                        alt='Delete'
-                      />
-                    </span>
-                  </div>
+                  {rule !== '2' ? (
+                    <></>
+                  ) : (
+                    <div
+                      style={{
+                        display: 'flex',
+                        width: '80%',
+                        justifyContent: 'space-between'
+                      }}>
+                      <span
+                        className='c-subheader-nav-link'
+                        onClick={() => handleDelete(item)}>
+                        <CIcon
+                          style={{ color: 'red' }}
+                          name='cil-trash'
+                          alt='Delete'
+                        />
+                      </span>
+                    </div>
+                  )}
                 </td>
               )
             }}

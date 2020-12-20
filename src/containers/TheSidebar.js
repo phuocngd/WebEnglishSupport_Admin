@@ -27,7 +27,7 @@ const TheSidebar = () => {
       onShowChange={val => dispatch(showHideSidebar(val))}>
       <CSidebarBrand className='d-md-down-none' to='/'>
         {/* icon bran set here */}
-        <CIcon
+        {/* <CIcon
           className='c-sidebar-brand-full'
           name='logo-negative'
           height={35}
@@ -36,7 +36,8 @@ const TheSidebar = () => {
           className='c-sidebar-brand-minimized'
           name='sygnet'
           height={35}
-        />
+        /> */} 
+        <h2>SPE Center</h2>
       </CSidebarBrand>
       <CSidebarNav>
         <CCreateElement

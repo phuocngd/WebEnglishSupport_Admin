@@ -113,8 +113,8 @@ const routes = [
 
   { path: '/QuanLy/TaiKhoanNguoiDung', name: 'Tài khoản', component: Admin },
   { path: '/QuanLy/DeThi', name: 'Đề thi', component: Exams, exact: true },
-  { path: '/QuanLy/DeThi/ThemDeThi', name: 'Thêm đề thi', component: addExam },
-  { path: '/theme', name: 'Theme', component: Colors, exact: true },
+  { path: '/QuanLy/DeThi/ThemDeThi', name: 'Thêm đề thi', component: addExam }
+  /* { path: '/theme', name: 'Theme', component: Colors, exact: true },
   { path: '/theme/colors', name: 'Colors', component: Colors },
   { path: '/theme/typography', name: 'Typography', component: Typography },
   { path: '/base', name: 'Base', component: Cards, exact: true },
@@ -168,7 +168,7 @@ const routes = [
   { path: '/notifications/toaster', name: 'Toaster', component: Toaster },
   { path: '/widgets', name: 'Widgets', component: Widgets }
   // { path: '/users', exact: true, name: 'Users', component: Users },
-  // { path: '/users/:id', exact: true, name: 'User Details', component: User }
+  // { path: '/users/:id', exact: true, name: 'User Details', component: User } */
 ];
 const routes2 = [];
 export default routes;

@@ -1,16 +1,6 @@
 // config slidebar
-
+//_tag type: 'CSidebarNavTitle' , 'CSidebarNavItem', 'CSidebarNavDropdown',
 export default [
-  {
-    _tag: 'CSidebarNavItem',
-    name: 'Dashboard',
-    to: '/dashboard',
-    icon: 'cil-speedometer',
-    badge: {
-      color: 'info',
-      text: 'NEW'
-    }
-  },
   {
     _tag: 'CSidebarNavTitle',
     _children: ['Quản lý']
@@ -69,8 +59,7 @@ export default [
     badge: {
       color: 'info'
     }
-  },
-
+  }/* ,
   {
     _tag: 'CSidebarNavTitle',
     _children: ['Theme']
@@ -365,5 +354,5 @@ export default [
   {
     _tag: 'CSidebarNavDivider',
     className: 'm-2'
-  }
+  } */
 ];

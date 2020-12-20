@@ -33,8 +33,6 @@ const Login = () => {
     e.preventDefault();
     const emailEncrypted = encrypt(getValueRef(emailRef));
     const passEncrypted = encrypt(getValueRef(passRef));
-    console.log(giaima(emailEncrypted));
-    console.log(giaima(passEncrypted));
     let filterModel = {
       email: emailEncrypted,
       password: passEncrypted,

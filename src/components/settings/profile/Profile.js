@@ -1,9 +1,9 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { validate } from 'email-validator';
 import useEncrypt from '../../hook/useEncrypt';
 import { axiosPost } from '../../../axios/axios';
-
+// sua lai profile nam trong compone
 import {
   CButton,
   CCard,
@@ -24,15 +24,16 @@ import Icon from '@mdi/react';
 import CIcon from '@coreui/icons-react';
 import { Link } from 'react-router-dom';
 import Axios from 'axios';
-
+import { getValueRef } from '../../../share/func';
 const GeneralEdit = () => {
   return (
     <>
       <OneItemCanEdit
         label='Họ và tên'
-        placeholder='nguyen duy'
+        placeholder='name'
         type='text'
-        apiURL={'http://localhost:9999/api/profile/name'}
+        apiPostURL={'http://localhost:9999/api/profile/name'}
+        apiGetURL={'http://localhost:9999/api/profile'}
       />
       <OneItemCanEdit label='SĐT' placeholder='0123456789' type='text' />
     </>
@@ -46,7 +47,14 @@ const Password = () => {
 
 const OneItemCanEdit = props => {
   const email = useSelector(state => state.authentication.loginState.email);
-  const { label, placeholder, type, apiURL } = props;
+  const {
+    label,
+    placeholder,
+    type,
+    apiPostURL,
+    apiGetURL,
+    needEncrypt = false
+  } = props;
   const dispatch = useDispatch();
   const [isViewMode, setIsViewMode] = useState(true);
   const [mahoa] = useEncrypt();
@@ -54,12 +62,25 @@ const OneItemCanEdit = props => {
   const inputRef = useRef();
 
   const handleSave = async () => {
-    const res = await Axios.post(apiURL, {
+    const model = {
       email: email,
-      value: '0937'
-    });
+      value: needEncrypt ? mahoa(getValueRef(inputRef)) : getValueRef(inputRef)
+    };
+    const res = await Axios.post(apiPostURL, model);
     setIsViewMode(true);
   };
+  //phd chua get dc
+  /*   useEffect(() => {
+    (async () => {
+      // You can await here
+      const response = await Axios.get(apiGetURL, {
+        params: {
+          email
+        }
+      });
+      console.log(response)
+    })();
+  }, []) */
 
   const renderBtn = isShow => {
     if (isShow)

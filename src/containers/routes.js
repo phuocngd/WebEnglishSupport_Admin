@@ -6,7 +6,9 @@ const addExam = React.lazy(() =>
 );
 
 const Admin = React.lazy(() => import('../components/settings/users/Admins'));
-const Clients = React.lazy(() => import('../components/settings/users/Clients'));
+const Clients = React.lazy(() =>
+  import('../components/settings/users/Clients')
+);
 
 const profile = React.lazy(() =>
   import('../components/settings/profile/Profile')

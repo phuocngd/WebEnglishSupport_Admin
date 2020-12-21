@@ -15,6 +15,9 @@ const StatusMiddleWare = (status, data) => {
   switch (status) {
     case 201:
       return true;
+    case 202:
+      Swal.fire('', infoMessage, 'error');
+      return false;
     case 203:
       Swal.fire('', infoMessage, 'error');
       return false;

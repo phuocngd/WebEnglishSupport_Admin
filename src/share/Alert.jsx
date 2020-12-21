@@ -7,20 +7,19 @@ import Swal from 'sweetalert2';
 // 500 server eror;
 
 const StatusMiddleWare = (status, data) => {
-  const { message } = data;
-  if (!message) {
-    return null;
+  const { infoMessage } = data;
+  if (!infoMessage) {
+    return true;
   }
 
   switch (status) {
     case 201:
-      Swal.fire('', message, 'error');
-      return false;
+      return true;
     case 203:
-      Swal.fire('', message, 'error');
+      Swal.fire('', infoMessage, 'error');
       return false;
     case 404:
-      Swal.fire('', message, 'error');
+      Swal.fire('', infoMessage, 'error');
       return false;
     default:
       return false;

@@ -16,10 +16,9 @@ import {
 } from '../../../Store/slice/userSlide';
 import CreateAdmin from './CreateAdmin';
 import { decrypt } from '../../../share/decrypt';
-
+import ToDateForView from '../../../share/ConvertDateForView'
 const fields = [
   // { key: '_id', label: 'Số thứ tự', _style: { width: '5%' } },
-  { key: 'fullname', label: 'Tên', _style: { width: '30%' } },
   { key: 'email', label: 'Email', _style: { width: '30%' } },
   { key: 'createdAt', label: 'Ngày tạo', _style: { width: '30%' } },
   { key: 'action', label: 'ACTION', _style: { width: '10%' } }
@@ -40,12 +39,12 @@ const Admins = () => {
   };
 
   const filterModelGet = {
-    url: `http://localhost:9999/api/user/${setRule}`
+    url: `http://localhost:9999/api/account/${setRule}`
   };
 
   const handleDelete = item => {
     const model = {
-      url: `http://localhost:9999/api/user/deleteAdmin/${item._id}`
+      url: `http://localhost:9999/api/account/deleteAdmin/${item._id}`
     };
     dispatch(deleteAdminRequest(model));
 
@@ -101,7 +100,8 @@ const Admins = () => {
             tableFilter
             scopedSlots={{
               index: item => <td>{item._id}</td>,
-              name: item => <td>{item.fullname}</td>,
+              name: item => <td>{item.email}</td>,
+              createdAt:item=> <td>{ToDateForView(item.createdAt)}</td>,
               action: item => (
                 <td style={{ display: 'flex', justifyContent: 'start' }}>
                   {rule !== '2' ? (

@@ -39,7 +39,7 @@ const CreateAdmin = props => {
         email: encrypt(emailRef.current.value),
         password: password,
         rule: ruleAdmin,
-        url: 'http://localhost:9999/api/user/createAdmin'
+        url: 'http://localhost:9999/api/account/createAdmin'
       };
       console.log(encrypt(fullnameRef.current.value));
 

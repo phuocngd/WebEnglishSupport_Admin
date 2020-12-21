@@ -21,7 +21,7 @@ const Clients = () => {
   const rule = 4;
 
   const filterModel = {
-    url: `http://localhost:9999/api/user/${rule}`
+    url: `http://localhost:9999/api/account/${rule}`
   };
   useEffect(() => {
     if (islogin) {

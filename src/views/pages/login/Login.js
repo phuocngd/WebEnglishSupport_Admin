@@ -33,8 +33,6 @@ const Login = () => {
     e.preventDefault();
     const emailEncrypted = encrypt(getValueRef(emailRef));
     const passEncrypted = encrypt(getValueRef(passRef));
-    console.log(giaima(emailEncrypted));
-    console.log(giaima(passEncrypted));
     let filterModel = {
       email: emailEncrypted,
       password: passEncrypted,
@@ -70,6 +68,7 @@ const Login = () => {
                         ref={emailRef}
                         placeholder='email@gmail.com'
                         autoComplete='email'
+                        required
                       />
                     </CInputGroup>
                     <CInputGroup className='mb-3'>
@@ -83,6 +82,7 @@ const Login = () => {
                         ref={passRef}
                         placeholder='Password'
                         autoComplete='current-password'
+                        required
                       />
                     </CInputGroup>
                     <div className='login-footer'>

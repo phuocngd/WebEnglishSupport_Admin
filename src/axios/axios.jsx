@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { StatusMiddleWare } from '../share/Alert';
 
 const axiosGet = async props => {
   const { url, ...rest } = props;
@@ -13,7 +14,7 @@ const axiosGet = async props => {
   } catch (error) {
     console.error(error);
   }
-  return response;
+  return StatusMiddleWare(response.status, response.data) && response;
 };
 
 const axiosPost = async props => {
@@ -24,7 +25,7 @@ const axiosPost = async props => {
   } catch (error) {
     console.error(error);
   }
-  return response;
+  return StatusMiddleWare(response.status, response.data) && response;
 };
 
 const axiosDelete = async props => {
@@ -35,6 +36,6 @@ const axiosDelete = async props => {
   } catch (error) {
     console.error(error);
   }
-  return response;
+  return StatusMiddleWare(response.status, response.data) && response;
 };
 export { axiosGet, axiosPost, axiosDelete };

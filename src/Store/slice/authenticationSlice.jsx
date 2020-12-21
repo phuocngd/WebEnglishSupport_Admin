@@ -1,13 +1,18 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { cloneDeep } from 'lodash';
 import { axiosGet, axiosPost, post } from '../../axios/axios';
+import { StatusMiddleWare } from '../../share/Alert';
 
 const signIn = createAsyncThunk('account/signin', async model => {
   const response = await axiosPost(model);
-  return response.data;
+  console.log(response);
+
+  return response;
 });
 const signUP = createAsyncThunk('account/signup', async model => {
   const response = await axiosPost(model);
-  return response.data;
+  console.log(response);
+  return response;
 });
 
 const authenticationSlice = createSlice({
@@ -28,7 +33,7 @@ const authenticationSlice = createSlice({
       sessionStorage.clear();
     },
     updateStateLogin: (state, action) => {
-      const data = action.payload;
+      const { data } = action.payload;
       state.loginState = {
         token: data[0],
         email: data[1],
@@ -39,16 +44,18 @@ const authenticationSlice = createSlice({
   extraReducers: {
     [signIn.pending]: (state, action) => {},
     [signIn.fulfilled]: (state, action) => {
-      const data = action.payload;
-      const loginState = {
-        token: data[0],
-        email: data[1],
-        rule: data[2]
-      };
-      state.loginState = loginState;
-      state.isLogin = true;
-      sessionStorage.setItem('login', JSON.stringify(loginState));
-      sessionStorage.setItem('isLogin', JSON.stringify(true));
+      const { data } = action.payload;
+      if (data) {
+        const loginState = {
+          token: data[0],
+          email: data[1],
+          rule: data[2]
+        };
+        state.loginState = loginState;
+        state.isLogin = true;
+        sessionStorage.setItem('login', JSON.stringify(loginState));
+        sessionStorage.setItem('isLogin', JSON.stringify(true));
+      }
     },
     [signIn.rejected]: (state, action) => {
       state.isLogin = false;
@@ -57,13 +64,14 @@ const authenticationSlice = createSlice({
 
     [signUP.pending]: (state, action) => {},
     [signUP.fulfilled]: (state, action) => {
-      const data = action.payload;
-
-      state.loginState = {
-        token: data[0],
-        email: data[1],
-        rule: data[2]
-      };
+      const { data } = action.payload;
+      if (data) {
+        state.loginState = {
+          token: data[0],
+          email: data[1],
+          rule: data[2]
+        };
+      }
     },
     [signUP.rejected]: (state, action) => {}
   }

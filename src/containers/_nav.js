@@ -5,15 +5,15 @@ export default [
     _tag: 'CSidebarNavTitle',
     _children: ['Quản lý']
   },
-  {
-    _tag: 'CSidebarNavItem',
-    name: 'Logo',
-    to: '/QuanLy/Logo',
-    icon: 'cil-speedometer',
-    badge: {
-      color: 'info'
-    }
-  },
+  // {
+  //   _tag: 'CSidebarNavItem',
+  //   name: 'Logo',
+  //   to: '/QuanLy/Logo',
+  //   icon: 'cil-speedometer',
+  //   badge: {
+  //     color: 'info'
+  //   }
+  // },
   {
     _tag: 'CSidebarNavItem',
     name: 'Tài khoản admin',

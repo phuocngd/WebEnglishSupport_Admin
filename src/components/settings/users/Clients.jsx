@@ -8,7 +8,7 @@ import { getClientRequest } from '../../../Store/slice/userSlide';
 
 const fields = [
   // { key: '_id', label: 'Số thứ tự', _style: { width: '5%' } },
-  { key: 'fullname', label: 'Tên', _style: { width: '30%' } },
+  // { key: 'fullname', label: 'Tên', _style: { width: '30%' } },
   { key: 'email', label: 'Email', _style: { width: '30%' } },
   { key: 'createdAt', label: 'Ngày tạo', _style: { width: '30%' } }
 ];
@@ -46,7 +46,7 @@ const Clients = () => {
             tableFilter
             scopedSlots={{
               index: item => <td>{item._id}</td>,
-              name: item => <td>{item.fullname}</td>
+              name: item => <td>{item.email}</td>
             }}
           />
         </CCardBody>

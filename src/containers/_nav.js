@@ -2,64 +2,54 @@
 //_tag type: 'CSidebarNavTitle' , 'CSidebarNavItem', 'CSidebarNavDropdown',
 export default [
   {
-    _tag: 'CSidebarNavTitle',
-    _children: ['Quản lý']
-  },
-  // {
-  //   _tag: 'CSidebarNavItem',
-  //   name: 'Logo',
-  //   to: '/QuanLy/Logo',
-  //   icon: 'cil-speedometer',
-  //   badge: {
-  //     color: 'info'
-  //   }
-  // },
-  {
-    _tag: 'CSidebarNavItem',
-    name: 'Tài khoản admin',
-    to: '/QuanLy/TaiKhoanAdmin',
+    _tag: 'CSidebarNavDropdown',
+    name: 'Quản lí',
     icon: 'cil-people',
-    badge: {
-      color: 'info'
-    }
+    _children: [
+      {
+        _tag: 'CSidebarNavItem',
+        name: 'Tài khoản admin',
+        to: '/TaiKhoanAdmin',
+        badge: {
+          color: 'info'
+        }
+      },
+      {
+        _tag: 'CSidebarNavItem',
+        name: 'Tài khoản người dùng',
+        to: '/TaiKhoanNguoiDung',
+        badge: {
+          color: 'info'
+        }
+      },
+      {
+        _tag: 'CSidebarNavItem',
+        name: 'Đề thi',
+        to: '/DeThi',
+        badge: {
+          color: 'info'
+        }
+      }
+    ]
   },
   {
-    _tag: 'CSidebarNavItem',
-    name: 'Tài khoản người dùng',
-    to: '/QuanLy/TaiKhoanNguoiDung',
-    icon: 'cil-people',
-    badge: {
-      color: 'info'
-    }
-  },
-
-  {
-    _tag: 'CSidebarNavItem',
-    name: 'Đề thi',
-    to: '/QuanLy/DeThi',
-    icon: 'cil-people',
-    badge: {
-      color: 'info'
-    }
-  },
-  {
-    _tag: 'CSidebarNavItem',
-    name: 'Thêm Đề thi',
-    to: '/QuanLy/DeThi/ThemDeThi',
-    icon: 'cil-chart-line',
-    badge: {
-      color: 'info'
-    }
-  },
-  {
-    _tag: 'CSidebarNavItem',
+    _tag: 'CSidebarNavDropdown',
     name: 'Thống kê',
-    to: '/QuanLy/ThongKe',
     icon: 'cil-speedometer',
     badge: {
       color: 'info'
-    }
-  }/* ,
+    },
+    _children: [
+      {
+        _tag: 'CSidebarNavItem',
+        name: 'Giải Đề',
+        to: '/ThongKeGiaiDe',
+        badge: {
+          color: 'info'
+        }
+      }
+    ]
+  } /* ,
   {
     _tag: 'CSidebarNavTitle',
     _children: ['Theme']

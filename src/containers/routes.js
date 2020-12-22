@@ -1,8 +1,12 @@
 import React from 'react';
 
 const Exams = React.lazy(() => import('../components/settings/exams/Exams'));
-const addExam = React.lazy(() =>
-  import('../components/settings/exams/AddExam.jsx')
+
+const UploadFile = React.lazy(() =>
+  import('../components/uploadFile/UploadFile')
+);
+const ThongKeGiaiDe = React.lazy(() =>
+  import('../components/thongke/ThongKeGiaiDe')
 );
 
 const Admin = React.lazy(() => import('../components/settings/users/Admins'));
@@ -94,26 +98,39 @@ const Widgets = React.lazy(() => import('../components/widgets/Widgets'));
 const User = React.lazy(() => import('../components/users/User'));
 
 const routes = [
-  { path: '/', exact: true, name: 'Home' },
-  { path: '/dashboard', name: 'Dashboard', component: Dashboard },
+  /* { path: '/', exact: true, name: 'Home' }, */
   { path: '/ThongTinCaNhan', name: 'Thông tin cá nhân', component: profile },
-  // { path: '/QuanLy', name: 'Quản lý', component: Exam, exact: true },
   {
-    path: '/QuanLy/TaiKhoanAdmin',
+    path: '/TaiKhoanAdmin',
     name: 'Tài khoản Admin',
     component: Admin,
     exact: true
   },
   {
-    path: '/QuanLy/TaiKhoanNguoiDung',
+    path: '/TaiKhoanNguoiDung',
     name: 'Tài khoản người dùng',
     component: Clients,
     exact: true
   },
-
-  { path: '/QuanLy/TaiKhoanNguoiDung', name: 'Tài khoản', component: Admin },
-  { path: '/QuanLy/DeThi', name: 'Đề thi', component: Exams, exact: true },
-  { path: '/QuanLy/DeThi/ThemDeThi', name: 'Thêm đề thi', component: addExam }
+  {
+    path: '/TaiKhoanNguoiDung',
+    name: 'Tài khoản',
+    component: Admin,
+    exact: true
+  },
+  { path: '/DeThi', name: 'Đề thi', component: Exams, exact: true },
+  {
+    path: '/ThemDeThi',
+    name: 'Thêm đề thi',
+    component: UploadFile,
+    exact: true
+  },
+  {
+    path: '/ThongKeGiaiDe',
+    name: 'Thống kê giải đề của user',
+    component: ThongKeGiaiDe,
+    exact: true
+  }
   /* { path: '/theme', name: 'Theme', component: Colors, exact: true },
   { path: '/theme/colors', name: 'Colors', component: Colors },
   { path: '/theme/typography', name: 'Typography', component: Typography },
@@ -170,5 +187,4 @@ const routes = [
   // { path: '/users', exact: true, name: 'Users', component: Users },
   // { path: '/users/:id', exact: true, name: 'User Details', component: User } */
 ];
-const routes2 = [];
 export default routes;

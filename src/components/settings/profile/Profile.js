@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { validate } from 'email-validator';
 import useEncrypt from '../../hook/useEncrypt';
 import { axiosPost } from '../../../axios/axios';
-// sua lai profile nam trong compone
 import {
   CButton,
   CCard,
@@ -25,17 +24,26 @@ import CIcon from '@coreui/icons-react';
 import { Link } from 'react-router-dom';
 import Axios from 'axios';
 import { getValueRef } from '../../../share/func';
+import { StatusMiddleWare } from '../../../share/Alert';
 const GeneralEdit = () => {
   return (
     <>
       <OneItemCanEdit
+        keyQuery='fullname'
         label='Họ và tên'
-        placeholder='name'
+        placeholder='nguyen van a'
         type='text'
         apiPostURL={'http://localhost:9999/api/profile/name'}
         apiGetURL={'http://localhost:9999/api/profile'}
       />
-      <OneItemCanEdit label='SĐT' placeholder='0123456789' type='text' />
+      <OneItemCanEdit
+        label='SĐT'
+        keyQuery='phone'
+        placeholder='0123456789'
+        type='text'
+        apiPostURL={'http://localhost:9999/api/profile/phone'}
+        apiGetURL={'http://localhost:9999/api/profile'}
+      />
     </>
   );
 };
@@ -53,11 +61,13 @@ const OneItemCanEdit = props => {
     type,
     apiPostURL,
     apiGetURL,
-    needEncrypt = false
+    needEncrypt = false,
+    keyQuery
   } = props;
   const dispatch = useDispatch();
   const [isViewMode, setIsViewMode] = useState(true);
   const [mahoa] = useEncrypt();
+  const [value, setValue] = useState(placeholder);
 
   const inputRef = useRef();
 
@@ -67,21 +77,28 @@ const OneItemCanEdit = props => {
       value: needEncrypt ? mahoa(getValueRef(inputRef)) : getValueRef(inputRef)
     };
     const res = await Axios.post(apiPostURL, model);
-    setIsViewMode(true);
+    StatusMiddleWare(res.status, res.data) && setIsViewMode(true);
   };
-  //phd chua get dc
-  /*   useEffect(() => {
+  useEffect(() => {
+    let cancelled = false;
     (async () => {
-      // You can await here
       const response = await Axios.get(apiGetURL, {
         params: {
           email
         }
       });
-      console.log(response)
+      if (!cancelled) {
+        const { data } = response;
+        setValue(data[keyQuery]);
+      }
     })();
-  }, []) */
-
+    return () => {
+      cancelled = true;
+    };
+  }, [apiGetURL, email, keyQuery, placeholder]);
+  const handleChange = e => {
+    setValue();
+  };
   const renderBtn = isShow => {
     if (isShow)
       return (
@@ -117,8 +134,10 @@ const OneItemCanEdit = props => {
         <input
           ref={inputRef}
           type={type}
-          placeholder={placeholder}
+          //  placeholder={placeholder}
+          value={value}
           disabled={isViewMode}
+          onChange={e => handleChange(e.target.value)}
         />
         <span className='item-control'>
           {renderBtn(!isViewMode)}

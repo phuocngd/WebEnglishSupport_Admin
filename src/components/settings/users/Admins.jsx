@@ -10,27 +10,22 @@ import Icon from '@mdi/react';
 import CIcon from '@coreui/icons-react';
 import { mdiAccountPlus } from '@mdi/js';
 import { useSelector, useDispatch } from 'react-redux';
-import {
-  deleteAdminRequest,
-  getAdminRequest
-} from '../../../Store/slice/userSlide';
 import CreateAdmin from './CreateAdmin';
 import { decrypt } from '../../../share/decrypt';
-import ToDateForView from '../../../share/ConvertDateForView'
+import ToDateForView from '../../../share/ConvertDateForView';
+import axios from 'axios';
 const fields = [
-  // { key: '_id', label: 'Số thứ tự', _style: { width: '5%' } },
   { key: 'email', label: 'Email', _style: { width: '30%' } },
   { key: 'createdAt', label: 'Ngày tạo', _style: { width: '30%' } },
   { key: 'action', label: 'ACTION', _style: { width: '10%' } }
 ];
 const Admins = () => {
   const dispatch = useDispatch();
-  const { isLogin } = useSelector(state => state.authentication);
-  const [islogin, setIsLogin] = useState(isLogin);
-  const admins = useSelector(state => state.user).admins;
+  const [loading, setLoading] = useState(true);
   const [modal, setModal] = useState(false);
   const [success, setSuccess] = useState(false);
   const { loginState } = useSelector(state => state.authentication);
+  const [admins, setAdmin] = useState([]);
   const rule = decrypt(loginState.rule);
   const setRule = 3;
 
@@ -38,25 +33,28 @@ const Admins = () => {
     setSuccess(!success);
   };
 
-  const filterModelGet = {
-    url: `http://localhost:9999/api/account/${setRule}`
-  };
-
   const handleDelete = item => {
-    const model = {
-      url: `http://localhost:9999/api/account/deleteAdmin/${item._id}`
-    };
-    dispatch(deleteAdminRequest(model));
-
-    setSuccess(!success);
+    (async () => {
+      const response = await axios.post(
+        `http://localhost:9999/api/account/deleteAdmin/${item._id}`
+      );
+      console.log(response)
+      setSuccess(!success);
+    })();
   };
 
   useEffect(() => {
-    if (islogin || success) {
-      dispatch(getAdminRequest(filterModelGet));
+    const fetchData = async () => {
+      const response = await axios.get(
+        `http://localhost:9999/api/account/${setRule}`
+      );
+      setAdmin(response.data);
       setSuccess(false);
-    }
-  }, [islogin, success]);
+      setLoading(false);
+    };
+
+    fetchData();
+  }, [success]);
 
   const toggleModal = () => {
     setModal(!modal);
@@ -101,7 +99,7 @@ const Admins = () => {
             scopedSlots={{
               index: item => <td>{item._id}</td>,
               name: item => <td>{item.email}</td>,
-              createdAt:item=> <td>{ToDateForView(item.createdAt)}</td>,
+              createdAt: item => <td>{ToDateForView(item.createdAt)}</td>,
               action: item => (
                 <td style={{ display: 'flex', justifyContent: 'start' }}>
                   {rule !== '2' ? (

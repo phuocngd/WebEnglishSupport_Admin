@@ -1,6 +1,7 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector} from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
+
 import {
   CDropdown,
   CDropdownItem,
@@ -11,6 +12,7 @@ import {
 } from '@coreui/react';
 import CIcon from '@coreui/icons-react';
 import { logOut } from '../Store/slice/authenticationSlice';
+import useEncrypt from '../components/hook/useEncrypt';
 
 const TheHeaderDropdown = () => {
   let history = useHistory();
@@ -22,17 +24,17 @@ const TheHeaderDropdown = () => {
   const handleRecoverPass = () => {
     history.push('/ThongTinCaNhan');
   };
+  
+  const { email } = useSelector(state => state.authentication).loginState
+  const [encrypt, giaima] = useEncrypt();
+  let emailEncrypted = giaima((email));
+  var name = emailEncrypted.substring(0, emailEncrypted.lastIndexOf("@"));
+
 
   return (
     <CDropdown inNav className='c-header-nav-items mx-2' direction='down'>
       <CDropdownToggle className='c-header-nav-link' caret={false}>
-        <div className='c-avatar'>
-          <CImg
-            src={'avatars/6.jpg'}
-            className='c-avatar-img'
-            alt='admin@bootstrapmaster.com'
-          />
-        </div>
+        {name}
       </CDropdownToggle>
       <CDropdownMenu className='pt-0' placement='bottom-end'>
         <CDropdownItem

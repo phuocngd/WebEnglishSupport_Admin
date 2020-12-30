@@ -1,19 +1,10 @@
 import React, { useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { validate } from 'email-validator';
 import useEncrypt from '../../hook/useEncrypt';
 import { axiosPost } from '../../../axios/axios';
-
 import {
   CButton,
-  CCard,
-  CCardBody,
-  CCardFooter,
-  CCardHeader,
   CCol,
-  CForm,
-  CFormGroup,
-  CInput,
   CLabel,
   CModal,
   CModalHeader,
@@ -22,33 +13,38 @@ import {
   CRow,
   CContainer
 } from '@coreui/react';
-import { postAdminRequest } from '../../../Store/slice/userSlide';
-
+import axios from 'axios'
 const CreateAdmin = props => {
   const [encrypt] = useEncrypt();
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(true);
+  const [success, setSuccess] = useState(false);
+
   let fullnameRef = useRef();
   let emailRef = useRef();
   let password = encrypt('123456');
   let ruleAdmin = encrypt('3');
-
-  const onSubmit = async () => {
+  const onSubmit = async e => {
+    e.preventDefault();
     try {
-      const filterModel = {
+      const input = {
         fullname: encrypt(fullnameRef.current.value),
         email: encrypt(emailRef.current.value),
         password: password,
-        rule: ruleAdmin,
-        url: 'http://localhost:9999/api/account/createAdmin'
+        rule: ruleAdmin
       };
-      console.log(encrypt(fullnameRef.current.value));
+      const url = 'http://localhost:9999/api/account/createAdmin';
 
-      dispatch(postAdminRequest(filterModel));
+      const response = await axios.post(url, input);
+      console.log(response);
       props.toggleModal();
-      // props.createSuccess();
+      props.createSuccess();
     } catch (err) {
       console.log(err);
+      alert('Vui lòng tạo lại');
     }
+    setSuccess(false);
+    setLoading(false);
   };
 
   return (
@@ -64,14 +60,14 @@ const CreateAdmin = props => {
               <CRow>
                 <CCol lg='6'>
                   <CRow>
-                    <CCol md='3'>
-                      <CLabel htmlFor='text-fullname'>Fullname</CLabel>
+                    <CCol md='3' className='my-3'>
+                      <CLabel htmlFor='text-fullname'>Họ tên</CLabel>
                     </CCol>
                     <CCol xs='12' md='9'>
                       <input
                         ref={fullnameRef}
                         type='text'
-                        placeholder='Fullname'
+                        placeholder='Họ tên'
                         autoComplete='fullname'
                         required
                       />

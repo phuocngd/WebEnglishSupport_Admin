@@ -5,27 +5,50 @@ import {
   CCardHeader,
   CCol,
   CRow,
+  CLink,
   CButton,
-  CLink
+  CDataTable
 } from '@coreui/react';
 import Icon from '@mdi/react';
 import { mdiAccountPlus } from '@mdi/js';
 import { useDispatch, useSelector } from 'react-redux';
 import { getExamsRequest } from '../../../Store/slice/examSlide';
-import Exam from './Exam';
+import ToDateForView from '../../../share/ConvertDateForView';
+import axios from 'axios';
+import CreateExam from './CreateExam'
+const fields = [
+  { key: 'title', label: 'Tên đề thi', _style: { width: '30%' } },
+  { key: 'description', label: 'Mô tả', _style: { width: '30%' } },
+  { key: 'createdAt', label: 'Ngày tạo', _style: { width: '30%' } }
+];
+
 const Exams = () => {
-  const { isloggedIn } = useSelector(state => state.authentication);
-  const [isLogin, setIsLogin] = useState(isloggedIn);
-  const exams = useSelector(state => state.exam).exams;
   const dispatch = useDispatch();
-  const filterModel = {
-    url: 'http://localhost:9999/api/fullexam/'
-  };
+  const [loading, setLoading] = useState(true);
+  const [modal, setModal] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [fullExam, setFullExam] = useState([]);
+
   useEffect(() => {
-    if (isLogin) {
-      dispatch(getExamsRequest(filterModel));
-    }
-  }, [isLogin]);
+    const fetchData = async () => {
+      const response = await axios.get('http://localhost:9999/api/fullexam/');
+      setFullExam(response.data);
+      setSuccess(false);
+      setLoading(false);
+    };
+    fetchData();
+  }, [success]);
+
+  const createSuccess = () => {
+    setSuccess(!success);
+  };
+
+  const toggleModal = () => {
+    setModal(!modal);
+  };
+
+  const handleDelete = item => {};
+
   return (
     <>
       <CRow>
@@ -34,8 +57,8 @@ const Exams = () => {
             <CCardHeader className='exams-title'>
               QUẢN LÝ ĐỀ THI
               <div className='card-header-actions'>
-                <CLink to='/QuanLy/DeThi/ThemDeThi'>
                   <CButton
+                    onClick={toggleModal}
                     block
                     variant='outline'
                     color='primary'
@@ -49,34 +72,48 @@ const Exams = () => {
                     />
                     Thêm đề thi
                   </CButton>
-                </CLink>
               </div>
             </CCardHeader>
             <CCardBody className='exams-content'>
-              <table className='table table-hover table-outline mb-0 d-none d-sm-table'>
-                <thead className='thead-light'>
-                  <tr>
-                    <th className='text-center '>Số thứ tự</th>
-                    <th scope='col' className='text-center'>
-                      Tên đề thi
-                    </th>
-                    <th scope='col' className='text-center'>
-                      Mô tả
-                    </th>
-                    <th scope='col' className='text-center'>
-                      Ngày tạo
-                    </th>
-                    <th scope='col' className='text-center'>
-                      Chỉnh sửa
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className='text-center'>
-                  {exams.map((exam, index) => (
-                    <Exam key={exam._id} exam={exam} stt={index + 1} />
-                  ))}
-                </tbody>
-              </table>
+              <CDataTable
+                items={fullExam}
+                fields={fields}
+                striped
+                responsive
+                hover
+                sorter
+                tableFilter
+                scopedSlots={{
+                  index: item => <td>{item._id}</td>,
+                  name: item => <td>{item.email}</td>,
+                  createdAt: item => <td>{ToDateForView(item.createdAt)}</td>,
+                  action: item => (
+                    <td style={{ display: 'flex', justifyContent: 'start' }}>
+                      <div
+                        style={{
+                          display: 'flex',
+                          width: '80%',
+                          justifyContent: 'space-between'
+                        }}>
+                        <span
+                          className='c-subheader-nav-link'
+                          onClick={() => handleDelete(item)}>
+                          {/* <Icon
+                            style={{ color: 'red' }}
+                            name='cil-trash'
+                            alt='Delete'
+                          /> */}
+                        </span>
+                      </div>
+                    </td>
+                  )
+                }}
+              />
+              <CreateExam
+                modal={modal}
+                toggleModal={toggleModal}
+                createSuccess={createSuccess}
+              />
             </CCardBody>
           </CCard>
         </CCol>

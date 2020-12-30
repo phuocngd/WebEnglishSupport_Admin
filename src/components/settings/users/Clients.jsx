@@ -1,34 +1,36 @@
 import React, { lazy, useState, useEffect } from 'react';
 import { CCard, CCardBody, CCardHeader, CDataTable } from '@coreui/react';
-import CIcon from '@coreui/icons-react';
-import Icon from '@mdi/react';
-import { mdiAccountPlus } from '@mdi/js';
 import { useSelector, useDispatch } from 'react-redux';
-import { getClientRequest } from '../../../Store/slice/userSlide';
+import ToDateForView from '../../../share/ConvertDateForView';
+import axios from 'axios';
 
 const fields = [
-  // { key: '_id', label: 'Số thứ tự', _style: { width: '5%' } },
-  // { key: 'fullname', label: 'Tên', _style: { width: '30%' } },
   { key: 'email', label: 'Email', _style: { width: '30%' } },
   { key: 'createdAt', label: 'Ngày tạo', _style: { width: '30%' } }
 ];
 
 const Clients = () => {
   const dispatch = useDispatch();
-  const { isLogin } = useSelector(state => state.authentication);
   const [islogin, setIsLogin] = useState(isLogin);
-  const clients = useSelector(state => state.user).clients;
-  const rule = 4;
+  const { isLogin } = useSelector(state => state.authentication);
+  const [clients, setClient]= useState([])
+  const [success, setSuccess] = useState(false);
+  const [loading, setLoading] = useState(true);
 
-  const filterModel = {
-    url: `http://localhost:9999/api/account/${rule}`
-  };
+  const setRule = 4;
+
   useEffect(() => {
-    if (islogin) {
-      dispatch(getClientRequest(filterModel));
-    }
-  }, [islogin]);
+    const fetchData = async () => {
+      const response = await axios.get(
+        `http://localhost:9999/api/account/${setRule}`
+      );
+      setClient(response.data);
+      setSuccess(false);
+      setLoading(false);
+    };
 
+    fetchData();
+  }, [success]);
   return (
     <>
       <CCard>
@@ -46,7 +48,8 @@ const Clients = () => {
             tableFilter
             scopedSlots={{
               index: item => <td>{item._id}</td>,
-              name: item => <td>{item.email}</td>
+              name: item => <td>{item.email}</td>,
+              createdAt: item => <td>{ToDateForView(item.createdAt)}</td>
             }}
           />
         </CCardBody>

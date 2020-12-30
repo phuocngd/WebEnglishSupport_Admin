@@ -2,8 +2,8 @@ import React from 'react';
 
 const Exams = React.lazy(() => import('../components/settings/exams/Exams'));
 
-const UploadFile = React.lazy(() =>
-  import('../components/uploadFile/UploadFile')
+const CreateExam = React.lazy(() =>
+  import('../components/settings/exams/CreateExam')
 );
 const ThongKeGiaiDe = React.lazy(() =>
   import('../components/thongke/ThongKeGiaiDe')
@@ -120,9 +120,9 @@ const routes = [
   },
   { path: '/DeThi', name: 'Đề thi', component: Exams, exact: true },
   {
-    path: '/ThemDeThi',
+    path: '/DeThi/ThemDeThi',
     name: 'Thêm đề thi',
-    component: UploadFile,
+    component: CreateExam,
     exact: true
   },
   {

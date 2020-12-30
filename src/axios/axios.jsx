@@ -22,7 +22,7 @@ const axiosPost = async props => {
   try {
     const response = await axios.post(url, rest);
     const { status, data } = response;
-    return StatusMiddleWare(status, data) && response;
+    return StatusMiddleWare(status, data) && response;;
   } catch (error) {
     console.error(error);
     return null;

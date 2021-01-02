@@ -22,8 +22,9 @@ const WidgetsBrand = lazy(() => import('../widgets/WidgetsBrand.js'));
 const Dashboard = () => {
   return (
     <>
-      <WidgetsDropdown />
-      <CCard>
+    <h1 className="px-5 ">Hệ thống quản lý trang web hỗ trợ học tiếng anh </h1>
+      {/* <WidgetsDropdown /> */}
+      {/* <CCard>
         <CCardBody>
           <CRow>
             <CCol sm='5'>
@@ -698,7 +699,7 @@ const Dashboard = () => {
             </CCardBody>
           </CCard>
         </CCol>
-      </CRow>
+      </CRow> */}
     </>
   );
 };

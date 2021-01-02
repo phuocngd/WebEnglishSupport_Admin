@@ -32,25 +32,25 @@ export default [
       }
     ]
   },
-  {
-    _tag: 'CSidebarNavDropdown',
-    name: 'Thống kê',
-    icon: 'cil-speedometer',
-    badge: {
-      color: 'info'
-    },
-    _children: [
-      {
-        _tag: 'CSidebarNavItem',
-        name: 'Giải Đề',
-        to: '/ThongKeGiaiDe',
-        badge: {
-          color: 'info'
-        }
-      }
-    ]
-  } /* ,
-  {
+  // {
+  //   _tag: 'CSidebarNavDropdown',
+  //   name: 'Thống kê',
+  //   icon: 'cil-speedometer',
+  //   badge: {
+  //     color: 'info'
+  //   },
+  //   _children: [
+  //     {
+  //       _tag: 'CSidebarNavItem',
+  //       name: 'Giải Đề',
+  //       to: '/ThongKeGiaiDe',
+  //       badge: {
+  //         color: 'info'
+  //       }
+  //     }
+  //   ]
+  // } ,
+  /*{
     _tag: 'CSidebarNavTitle',
     _children: ['Theme']
   },

@@ -1,9 +1,9 @@
 import React from 'react';
 
-const Exams = React.lazy(() => import('../components/settings/exams/Exams'));
+const Exams = React.lazy(() => import('../components/settings/fullexam/Exams'));
 const dashboard = React.lazy(()=> import('../components/dashboard/Dashboard'))
-const CreateExam = React.lazy(() =>
-  import('../components/settings/exams/CreateExam')
+const CreateFullExam = React.lazy(() =>
+  import('../components/settings/fullexam/CreateFullExam')
 );
 const ThongKeGiaiDe = React.lazy(() =>
   import('../components/thongke/ThongKeGiaiDe')
@@ -18,7 +18,7 @@ const profile = React.lazy(() =>
   import('../components/settings/profile/Profile')
 );
 const routes = [
-  { path: '/', exact: true, name: 'Home', component: dashboard }, 
+  { path: '/', exact: true, name: 'Home', component: dashboard },
   { path: '/ThongTinCaNhan', name: 'Thông tin cá nhân', component: profile },
   {
     path: '/TaiKhoanAdmin',
@@ -42,7 +42,7 @@ const routes = [
   {
     path: '/DeThi/ThemDeThi',
     name: 'Thêm đề thi',
-    component: CreateExam,
+    component: CreateFullExam,
     exact: true
   },
   {

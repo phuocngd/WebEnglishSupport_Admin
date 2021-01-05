@@ -11,13 +11,10 @@ import axios from 'axios';
 
 const CreateExam = props => {
   const history = useHistory();
-  const { type, isSubmit } = props;
+  const { type, isSubmit, id } = props;
   const [file, setFiles] = useState([]);
 
   const handleChange = e => {
-    // if (e.target.files) {
-    //   setFiles([...file, e.target.files]);
-    // }
     setFiles([...e.target.files]);
     console.log(e.target.files.length)
   };
@@ -30,7 +27,7 @@ const CreateExam = props => {
     }
     try {
       const res = await axios.post(
-        'http://localhost:9999/api/fullexam/5fe5c4237b26d02e34253249/exam',
+        `http://localhost:9999/api/fullexam/${id}/exam`,
         formData,
         {
           headers: {
@@ -38,26 +35,15 @@ const CreateExam = props => {
           }
         }
       );
-      // try {
-      // const filterModel = {
-      //   type: type,
-      //   file: files,
-      //   url: 'http://localhost:9999/api/fullexam/5fe5c4237b26d02e34253249/exam'
-      // };
-      // const res = await axiosPost(filterModel);
-      // if (res) {
-      // console.log(res);
-      // }
-
       if (res) {
-        console.log(res.data.data[0])
+        console.log(res.data)
         history.push('/DeThi');
       }
     } catch (err) {
       console.log(err);
     }
   };
-  if (isSubmit) {
+  if (isSubmit && id) {
     handleSubmit();
   }
   return (
@@ -70,20 +56,12 @@ const CreateExam = props => {
             {type === 'Listening' ? (
               <>
                 <CCol md='5'>
-                  <CLabel htmlFor='text-description'>File PDF {type} </CLabel>
+                  <CLabel htmlFor='text-description'>File PDF và audio {type} </CLabel>
                 </CCol>
-
                 <CCol xs='12' md='7' className='mb-3'>
                   <input multiple type='file' id={1} onChange={handleChange} />
                   <required />
                 </CCol>
-                {/* <CCol md='5'>
-                  <CLabel htmlFor='text-description'>File audio {type} </CLabel>
-                </CCol>
-                <CCol xs='12' md='7'>
-                  <input type='file' id={2} onChange={handleChange} />
-                  <required />
-                </CCol> */}
               </>
             ) : (
               <>

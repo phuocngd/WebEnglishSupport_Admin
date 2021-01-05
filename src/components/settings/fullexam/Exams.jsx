@@ -98,7 +98,7 @@ const Exams = () => {
                           className='c-subheader-nav-link'
                           onClick={() => handleDelete(item)}>
                           <CIcon
-                            // content={freeSet.cilTrash}
+                            content={freeSet.cilTrash}
                             style={{ color: 'red' }}
                             name='cil-trash'
                             alt='Delete'

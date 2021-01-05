@@ -22,21 +22,20 @@ const CreateFullExam = props => {
   const [title, setTitle] = useState();
   const [description, setDescription] = useState();
   const [isSubmit, setIsSubmit] = useState(false);
-  const fullexam = { title, description };
-
+  const [id, setId] = useState(null);
   const onSubmitFullExam = async () => {
     try {
       setIsSubmit(true);
-      // const filterModel = {
-      //   title: title,
-      //   description: description,
-      //   url: 'http://localhost:9999/api/fullexam/'
-      // };
-      // const res = await axiosPost(filterModel);
-      // if (res) {
-      //   console.log(res);
-      // }
-      // console.log(fullexam);
+      const filterModel = {
+        title: title,
+        description: description,
+        url: 'http://localhost:9999/api/fullexam/'
+      };
+      const res = await axiosPost(filterModel);
+      if (res) {
+        console.log(res.data)
+        setId(res.data._id);
+      }
     } catch (err) {
       console.log(err);
     }
@@ -80,8 +79,8 @@ const CreateFullExam = props => {
               </CCol>
             </CRow>
           </CCol>
-          <CreateExam type='Listening' isSubmit={isSubmit} />
-          <CreateExam type='Reading' isSubmit={isSubmit} />
+          <CreateExam type='Listening' id={id} isSubmit={isSubmit} />
+          <CreateExam type='Reading' id={id} isSubmit={isSubmit} />
           <CButton color='primary' type='submit' id='next'>
             Thêm
           </CButton>

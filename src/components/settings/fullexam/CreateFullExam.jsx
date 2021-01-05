@@ -33,7 +33,6 @@ const CreateFullExam = props => {
       };
       const res = await axiosPost(filterModel);
       if (res) {
-        console.log(res.data)
         setId(res.data._id);
       }
     } catch (err) {
@@ -74,7 +73,6 @@ const CreateFullExam = props => {
                   onChange={e => {
                     setDescription(e.target.value);
                   }}
-                  required
                 />
               </CCol>
             </CRow>

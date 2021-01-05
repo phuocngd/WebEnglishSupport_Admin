@@ -5,6 +5,7 @@ const dashboard = React.lazy(()=> import('../components/dashboard/Dashboard'))
 const CreateFullExam = React.lazy(() =>
   import('../components/settings/fullexam/CreateFullExam')
 );
+const EditFullExam = React.lazy(()=>import('../components/settings/fullexam/EditFullExam'))
 const ThongKeGiaiDe = React.lazy(() =>
   import('../components/thongke/ThongKeGiaiDe')
 );
@@ -43,6 +44,12 @@ const routes = [
     path: '/DeThi/ThemDeThi',
     name: 'Thêm đề thi',
     component: CreateFullExam,
+    exact: true
+  },
+  {
+    path: '/DeThi/CapNhatDeThi/:id',
+    name: 'Cập nhật đề thi',
+    component: EditFullExam,
     exact: true
   },
   {

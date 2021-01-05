@@ -13,7 +13,6 @@ const CreateExam = props => {
   const history = useHistory();
   const { type, isSubmit, id } = props;
   const [file, setFiles] = useState([]);
-
   const handleChange = e => {
     setFiles([...e.target.files]);
     console.log(e.target.files.length)

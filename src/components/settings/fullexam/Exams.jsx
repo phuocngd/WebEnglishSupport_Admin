@@ -10,6 +10,7 @@ import {
   CDataTable
 } from '@coreui/react';
 import CIcon from '@coreui/icons-react';
+import {useHistory} from 'react-router-dom'
 import { freeSet } from '@coreui/icons';
 import Icon from '@mdi/react';
 import { mdiAccountPlus } from '@mdi/js';
@@ -19,6 +20,7 @@ import ToDateForView from '../../../share/ConvertDateForView';
 import axios from 'axios';
 import CreateFullExam from './CreateFullExam';
 import CreateExam from './CreateExam';
+import { mdiPencilOutline } from '@mdi/js';
 const fields = [
   { key: 'title', label: 'Tên đề thi', _style: { width: '30%' } },
   { key: 'description', label: 'Mô tả', _style: { width: '30%' } },
@@ -28,6 +30,7 @@ const fields = [
 
 const Exams = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const [success, setSuccess] = useState(false);
   const [fullExam, setFullExam] = useState([]);
 
@@ -48,6 +51,7 @@ const Exams = () => {
       setSuccess(!success);
     })();
   };
+
   return (
     <>
       <CRow>
@@ -88,6 +92,23 @@ const Exams = () => {
                   createdAt: item => <td>{ToDateForView(item.createdAt)}</td>,
                   action: item => (
                     <td style={{ display: 'flex', justifyContent: 'start' }}>
+                      <div
+                        style={{
+                          display: 'flex',
+                          width: '80%',
+                          justifyContent: 'space-between'
+                        }}>
+                        <CLink to ={'/DeThi/CapNhatDeThi/'+item.id}
+                          className='c-subheader-nav-link'
+                          >
+                          <CIcon
+                            content={freeSet.cilPencil}
+                            style={{ color: 'red' }}
+                            name='cil-pencil'
+                            alt='Edit'
+                          />
+                        </CLink>
+                      </div>
                       <div
                         style={{
                           display: 'flex',

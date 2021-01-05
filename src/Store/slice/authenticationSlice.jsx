@@ -34,6 +34,8 @@ const authenticationSlice = createSlice({
     },
     updateStateLogin: (state, action) => {
       const { data } = action.payload;
+      console.log(action.payload)
+      console.log(data)
       state.loginState = {
         token: data[0],
         email: data[1],

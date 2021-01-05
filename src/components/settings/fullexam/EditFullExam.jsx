@@ -23,10 +23,7 @@ const EditFullExam = props => {
   const [fullexam, setFullExam] = useState();
   const [title, setTitle] = useState();
   const [description, setDescription] = useState();
-  const [isSubmit, setIsSubmit] = useState(false);
-  const [id, setId] = useState(null);
-  const handleSubmit = () => {};
-  const handleChange = () => {};
+  let data;
   useEffect(() => {
     let cancelled = false;
     (async () => {
@@ -35,11 +32,10 @@ const EditFullExam = props => {
       };
       const response = await axiosGet(reqModel);
       if (!cancelled && response) {
-        const { data } = response;
+         data  = response.data;
         if (data) {
           setTitle(data.title);
           setDescription(data.description);
-          
         }
       }
     })();
@@ -50,7 +46,7 @@ const EditFullExam = props => {
   return (
     <>
       <h3>Cập nhật đề thi</h3>
-      <form onSubmit={handleSubmit}>
+      <form>
         <CContainer>
           <CCol lg='12'>
             <CRow>
@@ -84,27 +80,34 @@ const EditFullExam = props => {
               </CCol>
             </CRow>
           </CCol>
+          <CRow className="mx-3">
+            <CCol md='6'>
+              <h3 htmlFor='text-description'>Đề thi nghe</h3>
+            </CCol>
+            <CCol md='6'>
+              <h3 htmlFor='text-description'>Đề thi đọc</h3>
+            </CCol>
+          </CRow>
           <CRow>
-            <CCol md='5' className='my-3'>
+            <CCol md='6'>
               <div className='all-page-container'>
-                <AllPagesPDFViewer pdf={samplePDF} />
+                <AllPagesPDFViewer
+                  file={{
+                    url: `http://localhost:9999/api/exam/${props.match.params.id}/pdf/LC`
+                  }}
+                />
               </div>{' '}
             </CCol>
             <CCol>
               <div className='all-page-container'>
-                <AllPagesPDFViewer pdf={samplePDF} />
+                <AllPagesPDFViewer
+                  file={{
+                    url: `http://localhost:9999/api/exam/${props.match.params.id}/pdf/RC`
+                  }}
+                />
               </div>
             </CCol>
           </CRow>
-          <CreateExam type='Reading' id={id} isSubmit={isSubmit} />
-          <h4>All Pages</h4>
-
-          <CButton color='primary' type='submit' id='next'>
-            Thêm
-          </CButton>
-          {/* <CButton color='secondary' onClick={props.toggleModal}>
-            Bỏ qua
-          </CButton> */}
         </CContainer>
       </form>
     </>
